@@ -1,219 +1,27 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PromptMaster Pro - Crie Prompts Perfeitos</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Arial, sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #4361ee, #3a0ca3);
-            color: white;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-        
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .logo {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #4cc9f0;
-        }
-        
-        h1 {
-            font-size: 2.8rem;
-            margin-bottom: 20px;
-            background: linear-gradient(90deg, #4cc9f0, #f72585);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 30px;
-        }
-        
-        .tool-box {
-            background: white;
-            color: #333;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 30px 0;
-        }
-        
-        select, textarea, button {
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 10px;
-            border: 2px solid #ddd;
-            font-size: 1rem;
-        }
-        
-        button {
-            background: linear-gradient(135deg, #4361ee, #3a0ca3);
-            color: white;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-        
-        button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
-        }
-        
-        .result-box {
-            background: #f8f9ff;
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 20px;
-            min-height: 200px;
-            border: 2px solid #4361ee;
-        }
-        
-        pre {
-            white-space: pre-wrap;
-            font-family: 'Courier New', monospace;
-            background: #1a1a2e;
-            color: #06d6a0;
-            padding: 20px;
-            border-radius: 10px;
-            overflow-x: auto;
-        }
-        
-        .cta {
-            text-align: center;
-            margin-top: 40px;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background: #06d6a0;
-            color: white;
-            padding: 18px 36px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-top: 20px;
-            transition: all 0.3s;
-        }
-        
-        .cta-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 30px rgba(6, 214, 160, 0.4);
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <div class="logo">🤖 PromptMaster Pro</div>
-            <h1>Crie Prompts e Códigos Perfeitos</h1>
-            <p class="subtitle">Ferramenta avançada para geração de prompts precisos e códigos impecáveis</p>
-        </header>
-        
-        <div class="tool-box">
-            <h2>🧠 Gerador de Prompts Inteligente</h2>
-            
-            <label for="task-type">Tipo de Tarefa:</label>
-            <select id="task-type">
-                <option value="code">Geração de Código</option>
-                <option value="prompt">Otimização de Prompt</option>
-                <option value="business">Ideia de Negócio</option>
-                <option value="analysis">Análise de Dados</option>
-            </select>
-            
-            <label for="language">Linguagem:</label>
-            <select id="language">
-                <option value="python">Python</option>
-                <option value="javascript">JavaScript</option>
-                <option value="html">HTML/CSS</option>
-                <option value="sql">SQL</option>
-            </select>
-            
-            <label for="description">Descreva sua necessidade:</label>
-            <textarea id="description" rows="4" placeholder="Ex: Preciso de um script Python para web scraping de dados de produtos...">Preciso de um script Python para web scraping de dados de produtos em e-commerce</textarea>
-            
-            <button id="generate-btn" onclick="generatePrompt()">
-                ⚡ Gerar Prompt e Código Perfeito
-            </button>
-            
-            <div class="result-box">
-                <h3>📄 Resultado Gerado:</h3>
-                <div id="output">
-                    <p style="color: #666; text-align: center; padding: 40px;">
-                        Clique no botão acima para gerar seu primeiro prompt!
-                    </p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="cta">
-            <h2>🚀 Pronto para Revolucionar seu Trabalho?</h2>
-            <p>Comece agora com 7 dias gratuitos. Cancele quando quiser.</p>
-            <a href="https://mpago.la/2Qf4Fqi" target="_blank" class="cta-button">
-                💰 QUERO COMEÇAR AGORA - R$ 29,90/mês
-            </a>
-            <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
-                ✅ 7 dias grátis | ✅ Cancelamento fácil | ✅ Suporte 24h
-            </p>
-        </div>
-    </div>
+// ===== SISTEMA DE GERAÇÃO DE PROMPTS =====
 
-    <script>
-        // Sistema de geração de prompts
-        function generatePrompt() {
-            const taskType = document.getElementById('task-type').value;
-            const language = document.getElementById('language').value;
-            const description = document.getElementById('description').value;
-            
-            const examples = {
-                code: {
-                    python: `# PROMPT PERFEITO PARA IA:
+// Função para gerar exemplo
+function generateExample() {
+    console.log("Botão clicado - iniciando geração...");
+    
+    const taskType = document.getElementById('task-type').value;
+    const language = document.getElementById('language').value;
+    const complexity = document.getElementById('complexity').value;
+    const description = document.getElementById('description').value;
+    
+    console.log("Parâmetros:", { taskType, language, complexity, description });
+    
+    // Dados de exemplos
+    const examples = {
+        "code-generation": {
+            "python": {
+                "beginner": `# PROMPT PERFEITO PARA IA:
 "Crie um script Python para web scraping de produtos de e-commerce com:
-1. Use requests e BeautifulSoup
-2. Extraia nome, preço e avaliação
-3. Trate erros de conexão
-4. Exporte para CSV com timestamp"
+1. Use requests e BeautifulSoup para acessar páginas
+2. Extraia: nome, preço, avaliação e disponibilidade
+3. Trate erros de conexão e dados ausentes
+4. Exporte os dados para CSV com timestamp
+5. Inclua comentários explicativos e docstrings"
 
 # CÓDIGO GERADO:
 import requests
@@ -221,163 +29,771 @@ from bs4 import BeautifulSoup
 import csv
 from datetime import datetime
 
-def scrape_products(url):
-    headers = {'User-Agent': 'Mozilla/5.0'}
+class EcommerceScraper:
+    """
+    Classe para scraping de produtos de e-commerce.
+    """
     
-    try:
-        response = requests.get(url, headers=headers, timeout=10)
-        response.raise_for_status()
+    def __init__(self, base_url):
+        self.base_url = base_url
+        self.headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        }
+    
+    def fetch_page(self, url):
+        """Busca uma página web com tratamento de erros."""
+        try:
+            response = requests.get(url, headers=self.headers, timeout=10)
+            response.raise_for_status()
+            return response.text
+        except requests.RequestException as e:
+            print(f"Erro ao acessar {url}: {e}")
+            return None
+    
+    def parse_products(self, html):
+        """Analisa o HTML e extrai dados dos produtos."""
+        if not html:
+            return []
         
-        soup = BeautifulSoup(response.text, 'html.parser')
+        soup = BeautifulSoup(html, 'html.parser')
         products = []
         
-        # Encontra produtos (ajuste os seletores conforme o site)
-        items = soup.select('.product-item, .product-card')
+        # Seletor genérico - ajuste conforme o site
+        product_elements = soup.select('.product-item') or soup.select('.product-card')
         
+        for element in product_elements:
+            try:
+                name = element.select_one('.product-name')?.text.trim() || "N/A"
+                price = element.select_one('.product-price')?.text.trim() || "N/A"
+                rating = element.select_one('.product-rating')?.text.trim() || "N/A"
+                
+                products.append({
+                    'name': name,
+                    'price': price,
+                    'rating': rating
+                })
+            except Exception as e:
+                console.log("Erro ao extrair produto:", e)
+                continue
+        
+        return products
+    
+    def save_to_csv(self, products, filename=None):
+        """Salva produtos em arquivo CSV."""
+        if not filename:
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            filename = f'produtos_{timestamp}.csv'
+        
+        if not products:
+            print("Nenhum produto para salvar.")
+            return
+        
+        with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow(['Nome', 'Preço', 'Avaliação'])
+            for product in products:
+                writer.writerow([product.name, product.price, product.rating])
+        
+        print(f"Dados salvos em {filename}")
+        return filename
+
+# Exemplo de uso:
+if __name__ == "__main__":
+    scraper = EcommerceScraper("https://exemplo-ecommerce.com")
+    html = scraper.fetch_page("https://exemplo-ecommerce.com/produtos")
+    
+    if html:
+        products = scraper.parse_products(html)
+        if products:
+            scraper.save_to_csv(products)
+            print(f"Extraídos {len(products)} produtos com sucesso!")
+        else:
+            print("Nenhum produto encontrado.")
+    else:
+        print("Não foi possível acessar a página.")`,
+                
+                "intermediate": `# PROMPT OTIMIZADO PARA IA:
+"Desenvolva uma classe Python robusta para web scraping com:
+1. Padrão Strategy para diferentes sites de e-commerce
+2. Cache com Redis para reduzir requests repetidos
+3. Rotação de User-Agents e proxies
+4. Sistema de fila para scraping assíncrono
+5. Logs estruturados e métricas de performance"
+
+# CÓDIGO GERADO:
+import requests
+from bs4 import BeautifulSoup
+import redis
+import logging
+from abc import ABC, abstractmethod
+import random
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+class ScrapingStrategy(ABC):
+    """Interface Strategy para diferentes sites."""
+    
+    @abstractmethod
+    def extract_products(self, html):
+        pass
+    
+    @abstractmethod
+    def build_url(self, page):
+        pass
+
+class AmazonStrategy(ScrapingStrategy):
+    def extract_products(self, html):
+        soup = BeautifulSoup(html, 'html.parser')
+        products = []
+        
+        items = soup.select('div[data-component-type="s-search-result"]')
         for item in items:
-            name = item.select_one('.product-name')?.text.trim() || "N/A"
-            price = item.select_one('.product-price')?.text.trim() || "N/A"
+            try:
+                name_elem = item.select_one('h2 a span')
+                price_elem = item.select_one('.a-price-whole')
+                rating_elem = item.select_one('.a-icon-alt')
+                
+                product = {
+                    'name': name_elem.text.strip() if name_elem else 'N/A',
+                    'price': price_elem.text if price_elem else 'N/A',
+                    'rating': rating_elem.text.split()[0] if rating_elem else 'N/A',
+                    'url': 'https://amazon.com' + item.select_one('h2 a')['href']
+                }
+                products.append(product)
+            except Exception as e:
+                logger.debug(f"Erro Amazon: {e}")
+        
+        return products
+    
+    def build_url(self, page):
+        return f"https://www.amazon.com/s?k=python+books&page={page}"
+
+class EcommerceScraperAdvanced:
+    def __init__(self, strategy, cache_ttl=3600):
+        self.strategy = strategy
+        self.redis_client = redis.Redis(host='localhost', port=6379, db=0)
+        self.cache_ttl = cache_ttl
+        self.session = requests.Session()
+        
+        self.user_agents = [
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15'
+        ]
+    
+    def get_random_headers(self):
+        return {
+            'User-Agent': random.choice(self.user_agents),
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+        }
+    
+    def fetch_with_cache(self, url):
+        cache_key = f"scraper:{hash(url)}"
+        
+        cached = self.redis_client.get(cache_key)
+        if cached:
+            logger.info(f"Cache hit: {url}")
+            return cached.decode('utf-8')
+        
+        logger.info(f"Fetching: {url}")
+        try:
+            headers = self.get_random_headers()
+            response = self.session.get(url, headers=headers, timeout=15)
+            response.raise_for_status()
             
-            products.append({
-                'name': name,
-                'price': price,
-                'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            })
+            html = response.text
+            self.redis_client.setex(cache_key, self.cache_ttl, html)
+            
+            return html
+        except Exception as e:
+            logger.error(f"Erro ao buscar {url}: {e}")
+            return None
+    
+    def scrape_page(self, page_num):
+        url = self.strategy.build_url(page_num)
+        html = self.fetch_with_cache(url)
         
-        # Salva em CSV
-        filename = f'produtos_{datetime.now().strftime("%Y%m%d_%H%M%S")}.csv'
-        with open(filename, 'w', newline='', encoding='utf-8') as file:
-            writer = csv.DictWriter(file, fieldnames=['name', 'price', 'timestamp'])
-            writer.writeheader()
-            writer.writerows(products)
+        if not html:
+            return []
         
-        print(f"✅ {len(products)} produtos salvos em {filename}")
+        return self.strategy.extract_products(html)
+    
+    def scrape_multiple_pages(self, start_page, end_page, max_workers=3):
+        all_products = []
         
-    except Exception as e:
-        print(f"❌ Erro: {e}")
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            futures = []
+            for page in range(start_page, end_page + 1):
+                futures.append(executor.submit(self.scrape_page, page))
+            
+            for future in as_completed(futures):
+                try:
+                    products = future.result()
+                    all_products.extend(products)
+                except Exception as e:
+                    logger.error(f"Erro em página: {e}")
+        
+        return all_products
 
 # Uso:
-scrape_products("https://exemplo.com/produtos")`
-                },
-                prompt: {
-                    python: `# PROMPT ORIGINAL (ruim):
-"faça um código para calcular média"
+strategy = AmazonStrategy()
+scraper = EcommerceScraperAdvanced(strategy)
+products = scraper.scrape_multiple_pages(1, 3)
+print(f"Total de produtos: {len(products)}")`
+            },
+            "javascript": {
+                "intermediate": `// PROMPT PERFEITO PARA IA:
+"Crie uma aplicação React com Next.js para dashboard de analytics com:
+1. Gráficos interativos usando Chart.js ou Recharts
+2. Filtros dinâmicos por período e categoria
+3. Dashboard responsivo com grid flexível
+4. API routes para dados mockados
+5. Sistema de temas claro/escuro
+6. Testes básicos com Jest"
+
+// CÓDIGO GERADO:
+import { useState, useEffect } from 'react';
+import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell } from 'recharts';
+
+const AnalyticsDashboard = () => {
+    const [data, setData] = useState({ sales: [], categories: [] });
+    const [dateRange, setDateRange] = useState({ start: '2024-01-01', end: '2024-01-31' });
+    const [darkMode, setDarkMode] = useState(false);
+    const [loading, setLoading] = useState(true);
+    
+    useEffect(() => {
+        fetchData();
+    }, [dateRange]);
+    
+    const fetchData = async () => {
+        setLoading(true);
+        try {
+            const response = await fetch(\`/api/analytics?start=\${dateRange.start}&end=\${dateRange.end}\`);
+            const result = await response.json();
+            setData(result.data);
+        } catch (error) {
+            console.error('Erro ao buscar dados:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+    
+    const salesData = data.sales || [];
+    const categoryData = data.categories || [];
+    
+    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8'];
+    
+    return (
+        <div className={\`min-h-screen p-6 \${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-50'}\`}>
+            <div className="max-w-7xl mx-auto">
+                <header className="flex justify-between items-center mb-8">
+                    <div>
+                        <h1 className="text-3xl font-bold">Dashboard de Analytics</h1>
+                        <p className="text-gray-500">Visualize métricas do seu negócio</p>
+                    </div>
+                    
+                    <div className="flex items-center gap-4">
+                        <button
+                            onClick={() => setDarkMode(!darkMode)}
+                            className="px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700"
+                        >
+                            {darkMode ? '🌞 Modo Claro' : '🌙 Modo Escuro'}
+                        </button>
+                        
+                        <input
+                            type="date"
+                            value={dateRange.start}
+                            onChange={(e) => setDateRange({...dateRange, start: e.target.value})}
+                            className="px-3 py-2 border rounded"
+                        />
+                        <span>até</span>
+                        <input
+                            type="date"
+                            value={dateRange.end}
+                            onChange={(e) => setDateRange({...dateRange, end: e.target.value})}
+                            className="px-3 py-2 border rounded"
+                        />
+                    </div>
+                </header>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div className={\`p-6 rounded-lg shadow \${darkMode ? 'bg-gray-800' : 'bg-white'}\`}>
+                        <h3 className="text-lg font-semibold mb-2">Receita Total</h3>
+                        <p className="text-2xl font-bold text-green-500">R$ 125.430,75</p>
+                        <p className="text-sm text-gray-500">↑ 12% em relação ao mês anterior</p>
+                    </div>
+                    
+                    <div className={\`p-6 rounded-lg shadow \${darkMode ? 'bg-gray-800' : 'bg-white'}\`}>
+                        <h3 className="text-lg font-semibold mb-2">Taxa de Conversão</h3>
+                        <p className="text-2xl font-bold text-blue-500">4.3%</p>
+                        <p className="text-sm text-gray-500">↑ 0.5% em relação ao mês anterior</p>
+                    </div>
+                    
+                    <div className={\`p-6 rounded-lg shadow \${darkMode ? 'bg-gray-800' : 'bg-white'}\`}>
+                        <h3 className="text-lg font-semibold mb-2">Pedidos Totais</h3>
+                        <p className="text-2xl font-bold text-purple-500">511</p>
+                        <p className="text-sm text-gray-500">↑ 8.7% em relação ao mês anterior</p>
+                    </div>
+                    
+                    <div className={\`p-6 rounded-lg shadow \${darkMode ? 'bg-gray-800' : 'bg-white'}\`}>
+                        <h3 className="text-lg font-semibold mb-2">Valor Médio</h3>
+                        <p className="text-2xl font-bold text-yellow-500">R$ 245,50</p>
+                        <p className="text-sm text-gray-500">↓ 1.5% em relação ao mês anterior</p>
+                    </div>
+                </div>
+                
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div className={\`p-6 rounded-lg shadow \${darkMode ? 'bg-gray-800' : 'bg-white'}\`}>
+                        <h3 className="text-xl font-bold mb-4">Vendas ao Longo do Tempo</h3>
+                        <div className="h-80">
+                            <LineChart width={500} height={300} data={salesData}>
+                                <Line type="monotone" dataKey="sales" stroke="#8884d8" />
+                            </LineChart>
+                        </div>
+                    </div>
+                    
+                    <div className={\`p-6 rounded-lg shadow \${darkMode ? 'bg-gray-800' : 'bg-white'}\`}>
+                        <h3 className="text-xl font-bold mb-4">Vendas por Categoria</h3>
+                        <div className="h-80">
+                            <PieChart width={400} height={300}>
+                                <Pie
+                                    data={categoryData}
+                                    cx="50%"
+                                    cy="50%"
+                                    outerRadius={100}
+                                    fill="#8884d8"
+                                    dataKey="value"
+                                    label
+                                >
+                                    {categoryData.map((entry, index) => (
+                                        <Cell key={\`cell-\${index}\`} fill={COLORS[index % COLORS.length]} />
+                                    ))}
+                                </Pie>
+                            </PieChart>
+                        </div>
+                    </div>
+                </div>
+                
+                {loading && (
+                    <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
+                        <div className="text-white text-xl">Carregando dados...</div>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+};
+
+export default AnalyticsDashboard;`
+            }
+        },
+        "prompt-optimization": {
+            "python": {
+                "beginner": `# PROMPT ORIGINAL (ruim):
+"faça um código python para calcular média"
 
 # PROMPT OTIMIZADO (perfeito):
 "Crie uma função Python que:
-1. Receba uma lista de números
-2. Calcule média, mediana e moda
-3. Trate erros (lista vazia, valores inválidos)
-4. Retorne dicionário com resultados
-5. Inclua docstring e testes
+1. Receba uma lista de números inteiros ou floats
+2. Calcule a média aritmética dos valores
+3. Retorne a média com 2 casas decimais
+4. Inclua tratamento de erros para:
+   - Lista vazia (raise ValueError)
+   - Valores não numéricos (ignorar ou tratar)
+5. Adicione docstring com exemplos de uso
+6. Inclua testes unitários básicos
 
 Exemplo de uso esperado:
->>> calcular_estatisticas([10, 20, 30, 40, 50])
-{'media': 30.0, 'mediana': 30.0, 'moda': None}`,
-                    javascript: `// PROMPT OTIMIZADO:
-"Crie uma função JavaScript que:
-1. Valide formulário de contato
-2. Verifique: email válido, telefone, mensagem não vazia
-3. Mostre mensagens de erro específicas
-4. Envie dados via fetch para API
-5. Mostre feedback visual de sucesso/erro
+>>> calcular_media([10, 20, 30, 40, 50])
+30.0
+>>> calcular_media([1.5, 2.5, 3.5])
+2.5"
 
-Requisitos:
-- Validação em tempo real
-- Design responsivo
-- Acessibilidade (ARIA labels)
-- Suporte a todos navegadores modernos"`
-                }
-            };
-            
-            // Gera conteúdo
-            let content = "";
-            
-            if (examples[taskType] && examples[taskType][language]) {
-                content = examples[taskType][language];
-            } else {
-                content = `# PROMPT PERFEITO PARA IA:
-
-"${description}"
-
-# CÓDIGO GERADO (${language}):
-
-// A ferramenta completa analisaria seu contexto
-// e geraria uma solução personalizada com precisão
-
-function solucaoPersonalizada() {
-    console.log("Implementação otimizada para seu caso de uso");
+# CÓDIGO GERADO:
+def calcular_media(numeros):
+    """
+    Calcula a média aritmética de uma lista de números.
     
-    return {
-        sucesso: true,
-        mensagem: "Solução gerada com precisão extraordinária",
-        features: [
-            "Código limpo e documentado",
-            "Tratamento de erros robusto",
-            "Performance otimizada",
-            "Pronto para produção"
-        ]
+    Args:
+        numeros (list): Lista de números (int ou float)
+        
+    Returns:
+        float: Média aritmética com 2 casas decimais
+        
+    Raises:
+        ValueError: Se a lista estiver vazia
+        
+    Exemplos:
+        >>> calcular_media([10, 20, 30, 40, 50])
+        30.0
+        >>> calcular_media([1.5, 2.5, 3.5])
+        2.5
+    """
+    if not numeros:
+        raise ValueError("A lista não pode estar vazia")
+    
+    # Filtra apenas valores numéricos
+    valores_validos = []
+    for num in numeros:
+        if isinstance(num, (int, float)):
+            valores_validos.append(num)
+        else:
+            print(f"Aviso: Valor '{num}' ignorado (não é número)")
+    
+    if not valores_validos:
+        raise ValueError("Nenhum valor numérico válido na lista")
+    
+    media = sum(valores_validos) / len(valores_validos)
+    return round(media, 2)
+
+# Testes unitários básicos
+if __name__ == "__main__":
+    # Teste 1: Lista normal
+    assert calcular_media([10, 20, 30, 40, 50]) == 30.0
+    
+    # Teste 2: Lista com floats
+    assert calcular_media([1.5, 2.5, 3.5]) == 2.5
+    
+    # Teste 3: Lista com valores inválidos
+    assert calcular_media([10, "20", 30, None, 50]) == 30.0
+    
+    print("Todos os testes passaram!")
+    
+    # Teste de erro (descomente para verificar)
+    # calcular_media([])  # Deve levantar ValueError`
+            }
+        },
+        "business-idea": {
+            "general": {
+                "intermediate": `# PROMPT PERFEITO PARA IA:
+"Desenvolva um plano de negócios completo para uma startup de IA com:
+1. Nome e posicionamento no mercado
+2. Problema que resolve e solução proposta
+3. Modelo de negócio (freemium, SaaS, B2B)
+4. Público-alvo e persona
+5. Projeção financeira para 3 anos
+6. Estratégia de marketing e aquisição
+7. Plano de desenvolvimento de produto
+8. Análise de concorrentes e diferencial competitivo"
+
+# PLANO DE NEGÓCIOS GERADO:
+
+## 1. Nome e Posicionamento
+**PromptMaster Pro** - Plataforma de IA que transforma ideias em prompts e códigos perfeitos
+
+**Posicionamento:** "O copiloto definitivo para desenvolvedores e profissionais de IA"
+
+## 2. Problema & Solução
+**Problema:** Desenvolvedores perdem horas criando prompts ineficientes e códigos com erros
+
+**Solução:** Plataforma que gera prompts otimizados e códigos impecáveis em segundos
+
+## 3. Modelo de Negócio
+**Freemium:**
+- Básico: Gratuito (100 prompts/mês)
+- Pro: R$ 29,90/mês (500 prompts/mês)
+- Empresarial: R$ 99,90/mês (5000 prompts/mês, API)
+
+**Receitas Adicionais:**
+- Consultoria personalizada
+- Treinamentos corporativos
+- Parcerias com empresas de IA
+
+## 4. Público-Alvo
+**Persona Principal:** João, 28 anos
+- Desenvolvedor Full Stack
+- Trabalha em startup de tecnologia
+- Usa ChatGPT/Claude diariamente
+- Frustrado com prompts genéricos
+- Disposto a pagar por produtividade
+
+## 5. Projeção Financeira (3 anos)
+**Ano 1:**
+- 1.000 usuários gratuitos
+- 100 assinantes Pro (R$ 2.990/mês)
+- 20 clientes Empresarial (R$ 1.998/mês)
+- Receita Mensal: R$ 4.988
+- Receita Anual: R$ 59.856
+
+**Ano 2:**
+- 5.000 usuários gratuitos
+- 500 assinantes Pro (R$ 14.950/mês)
+- 100 clientes Empresarial (R$ 9.990/mês)
+- Receita Mensal: R$ 24.940
+- Receita Anual: R$ 299.280
+
+**Ano 3:**
+- 20.000 usuários gratuitos
+- 2.000 assinantes Pro (R$ 59.800/mês)
+- 500 clientes Empresarial (R$ 49.950/mês)
+- Receita Mensal: R$ 109.750
+- Receita Anual: R$ 1.317.000
+
+## 6. Estratégia de Marketing
+**Fase 1 (Lançamento):**
+- Beta para desenvolvedores influentes
+- Conteúdo no LinkedIn e Twitter
+- Parcerias com comunidades de programação
+
+**Fase 2 (Crescimento):**
+- SEO para termos como "prompt engineering"
+- Webinars sobre IA produtiva
+- Programa de afiliados (20% comissão)
+
+**Fase 3 (Consolidação):**
+- Participação em conferências de IA
+- Casos de sucesso com clientes
+- Integrações com ferramentas populares
+
+## 7. Plano de Desenvolvimento
+**Mês 1-3:** MVP (gerador básico de prompts)
+**Mês 4-6:** Sistema de templates e histórico
+**Mês 7-9:** API pública e integrações
+**Mês 10-12:** Ferramentas avançadas e colaboração
+
+## 8. Diferencial Competitivo
+✅ **Foco em precisão** - Códigos testáveis e prompts otimizados
+✅ **Contexto profundo** - Entende requisitos específicos
+✅ **Ecossistema** - Templates compartilhados pela comunidade
+✅ **Suporte especializado** - Especialistas em prompt engineering
+
+**Investimento Inicial Necessário:** R$ 50.000
+**ROI Estimado:** 12 meses
+**Potencial de Mercado:** R$ 500M+ (dev tools + IA)`
+            }
+        }
     };
+    
+    // Gera o conteúdo baseado nas seleções
+    let generatedContent = "";
+    
+    if (examples[taskType] && examples[taskType][language] && examples[taskType][language][complexity]) {
+        generatedContent = examples[taskType][language][complexity];
+    } else if (examples[taskType] && examples[taskType][language]) {
+        // Pega qualquer complexidade disponível
+        const availableComplexities = Object.keys(examples[taskType][language]);
+        if (availableComplexities.length > 0) {
+            generatedContent = examples[taskType][language][availableComplexities[0]];
+        }
+    } else if (examples[taskType]) {
+        // Pega qualquer linguagem disponível
+        const availableLanguages = Object.keys(examples[taskType]);
+        if (availableLanguages.length > 0) {
+            const firstLang = availableLanguages[0];
+            const availableComplexities = Object.keys(examples[taskType][firstLang]);
+            if (availableComplexities.length > 0) {
+                generatedContent = examples[taskType][firstLang][availableComplexities[0]];
+            }
+        }
+    } else {
+        // Conteúdo padrão se não encontrar
+        generatedContent = `# PROMPT PERFEITO PARA IA (${taskType} - ${language} - ${complexity}):
+
+"${description || 'Descreva sua necessidade acima para gerar um prompt personalizado'}"
+
+# CÓDIGO GERADO:
+
+// Este é um exemplo de código ${language} para ${taskType}
+// A ferramenta completa analisaria seu contexto específico
+// e geraria uma solução personalizada com precisão extraordinária
+
+function solucaoGerada() {
+    console.log("Solução otimizada para seu caso de uso");
+    
+    // Características incluídas:
+    // 1. Arquitetura limpa e mantenível
+    // 2. Tratamento de erros robusto
+    // 3. Performance otimizada
+    // 4. Documentação clara
+    // 5. Testabilidade facilitada
+    
+    return "Resultado preciso e pronto para produção";
 }
 
-// Para obter a versão completa e testada:
-// 1. Utilize o PromptMaster Pro
-// 2. Descreva requisitos específicos
-// 3. Receba código perfeito em segundos`;
-            }
-            
-            // Mostra resultado
-            document.getElementById('output').innerHTML = `
-                <div style="margin-bottom: 20px;">
-                    <button onclick="copyPrompt()" style="padding: 10px 20px; margin-right: 10px; background: #4361ee;">
-                        📋 Copiar Prompt
-                    </button>
-                    <button onclick="copyCode()" style="padding: 10px 20px; background: #06d6a0;">
-                        💾 Copiar Código
-                    </button>
-                </div>
-                <pre>${content}</pre>
-            `;
-            
-            // Feedback visual
-            const btn = document.getElementById('generate-btn');
-            btn.innerHTML = '✅ Gerado com Sucesso!';
-            btn.style.background = 'linear-gradient(135deg, #06d6a0, #04b489)';
-            
-            setTimeout(() => {
-                btn.innerHTML = '⚡ Gerar Prompt e Código Perfeito';
-                btn.style.background = '';
-            }, 2000);
-        }
+// Para obter a solução completa e personalizada:
+// 1. Descreva detalhadamente seu caso de uso
+// 2. Especifique restrições e requisitos
+// 3. Utilize o PromptMaster Pro para geração automática`;
+    }
+    
+    // Atualiza a área de saída
+    const outputArea = document.getElementById('output-container');
+    if (outputArea) {
+        outputArea.innerHTML = `<pre style="white-space: pre-wrap; word-wrap: break-word; font-family: 'Courier New', monospace; background: #f8f9fa; padding: 20px; border-radius: 8px; max-height: 500px; overflow-y: auto;">${generatedContent}</pre>`;
         
-        // Funções de cópia
-        function copyPrompt() {
-            const content = document.querySelector('pre').innerText;
-            const promptStart = content.indexOf('# PROMPT');
-            const promptEnd = content.indexOf('# CÓDIGO GERADO:');
-            
-            if (promptStart !== -1 && promptEnd !== -1) {
-                const promptText = content.substring(promptStart, promptEnd);
-                navigator.clipboard.writeText(promptText);
-                alert('Prompt copiado!');
-            }
-        }
+        // Habilita botões de cópia
+        if (copyPromptBtn) copyPromptBtn.disabled = false;
+        if (copyCodeBtn) copyCodeBtn.disabled = false;
         
-        function copyCode() {
-            const content = document.querySelector('pre').innerText;
-            const codeStart = content.indexOf('# CÓDIGO GERADO:');
-            
-            if (codeStart !== -1) {
-                const codeText = content.substring(codeStart + 16);
-                navigator.clipboard.writeText(codeText);
-                alert('Código copiado!');
-            }
-        }
+        // Feedback visual
+        generateBtn.innerHTML = '<i class="fas fa-check"></i> Gerado com Sucesso!';
+        generateBtn.style.backgroundColor = '#06d6a0';
         
-        // Gera exemplo inicial
-        window.onload = function() {
-            setTimeout(generatePrompt, 1000);
-        };
-    </script>
-</body>
-</html>
+        setTimeout(() => {
+            generateBtn.innerHTML = '<i class="fas fa-bolt"></i> Gerar Prompt e Código Perfeitos';
+            generateBtn.style.backgroundColor = '';
+        }, 2000);
+        
+        console.log("Conteúdo gerado com sucesso!");
+    } else {
+        console.error("Elemento output-container não encontrado!");
+    }
+}
+
+// Função para copiar prompt
+function copyPrompt() {
+    const outputArea = document.getElementById('output-container');
+    if (!outputArea) return;
+    
+    const text = outputArea.innerText;
+    const promptStart = text.indexOf('# PROMPT');
+    const promptEnd = text.indexOf('# CÓDIGO GERADO:');
+    
+    if (promptStart !== -1 && promptEnd !== -1) {
+        const promptText = text.substring(promptStart, promptEnd);
+        navigator.clipboard.writeText(promptText).then(() => {
+            showNotification('Prompt copiado para a área de transferência!', 'success');
+        });
+    } else {
+        showNotification('Não foi possível encontrar o prompt no conteúdo.', 'error');
+    }
+}
+
+// Função para copiar código
+function copyCode() {
+    const outputArea = document.getElementById('output-container');
+    if (!outputArea) return;
+    
+    const text = outputArea.innerText;
+    const codeStart = text.indexOf('# CÓDIGO GERADO:');
+    
+    if (codeStart !== -1) {
+        const codeText = text.substring(codeStart + 16); // +16 para pular o título
+        navigator.clipboard.writeText(codeText).then(() => {
+            showNotification('Código copiado para a área de transferência!', 'success');
+        });
+    } else {
+        showNotification('Não foi possível encontrar o código no conteúdo.', 'error');
+    }
+}
+
+// Função para mostrar notificação
+function showNotification(message, type) {
+    // Remove notificação anterior
+    const oldNotification = document.querySelector('.notification');
+    if (oldNotification) oldNotification.remove();
+    
+    // Cria nova notificação
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.innerHTML = `
+        <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+        <span>${message}</span>
+    `;
+    
+    // Estilos inline
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? '#06d6a0' : '#ef476f'};
+        color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        z-index: 99999;
+        animation: slideIn 0.3s ease;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Remove após 3 segundos
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 3000);
+}
+
+// Funções do modal Pix
+function openPixModal() {
+    const modal = document.getElementById('pixModal');
+    if (modal) modal.style.display = 'flex';
+}
+
+function closePixModal() {
+    const modal = document.getElementById('pixModal');
+    if (modal) modal.style.display = 'none';
+}
+
+function copyPixKey() {
+    const pixKey = '123.456.789-00';
+    navigator.clipboard.writeText(pixKey).then(() => {
+        showNotification('Chave PIX copiada! Cole no seu aplicativo bancário.', 'success');
+    });
+}
+
+// Inicialização quando a página carrega
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("Página carregada - inicializando sistema...");
+    
+    // Configura botões
+    const generateBtn = document.getElementById('generate-btn');
+    const copyPromptBtn = document.getElementById('copy-prompt-btn');
+    const copyCodeBtn = document.getElementById('copy-code-btn');
+    
+    if (generateBtn) {
+        generateBtn.addEventListener('click', generateExample);
+        console.log("Botão de geração configurado");
+    } else {
+        console.error("Botão generate-btn não encontrado!");
+    }
+    
+    if (copyPromptBtn) {
+        copyPromptBtn.addEventListener('click', copyPrompt);
+    }
+    
+    if (copyCodeBtn) {
+        copyCodeBtn.addEventListener('click', copyCode);
+    }
+    
+    // Configura modal Pix
+    const pixModal = document.getElementById('pixModal');
+    if (pixModal) {
+        pixModal.addEventListener('click', function(e) {
+            if (e.target === this) closePixModal();
+        });
+    }
+    
+    // Fechar modal com ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closePixModal();
+    });
+    
+    // Gera conteúdo inicial
+    setTimeout(generateExample, 500);
+    
+    console.log("Sistema inicializado com sucesso!");
+});
+
+// Adiciona CSS para animações
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideIn {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    
+    @keyframes slideOut {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
+    }
+`;
+document.head.appendChild(style);

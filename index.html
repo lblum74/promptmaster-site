@@ -1,984 +1,799 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PromptMaster Pro - Crie Prompts e Códigos Perfeitos</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #4361ee;
-            --secondary: #3a0ca3;
-            --accent: #4cc9f0;
-            --dark: #1a1a2e;
-            --light: #f8f9fa;
-            --success: #06d6a0;
-            --warning: #ffd166;
-            --danger: #ef476f;
-            --gray: #6c757d;
-            --shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            --radius: 12px;
-            --transition: all 0.3s ease;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #f5f7ff;
-            color: var(--dark);
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 2rem 0;
-            box-shadow: var(--shadow);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-        
-        .logo i {
-            color: var(--accent);
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-        
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            padding: 5px 10px;
-            border-radius: 4px;
-        }
-        
-        nav a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        .hero {
-            padding: 5rem 0;
-            text-align: center;
-            background-color: white;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .hero h1 {
-            font-size: 3.2rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            color: var(--gray);
-        }
-        
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-        
-        .btn {
-            padding: 14px 28px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: var(--transition);
-            cursor: pointer;
-            border: none;
-            font-size: 1rem;
-        }
-        
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background-color: var(--secondary);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow);
-        }
-        
-        .btn-secondary {
-            background-color: white;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
-        
-        .btn-secondary:hover {
-            background-color: var(--primary);
-            color: white;
-            transform: translateY(-3px);
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--secondary);
-        }
-        
-        .section-title p {
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .features {
-            padding: 5rem 0;
-            background-color: white;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .feature-card {
-            background-color: white;
-            border-radius: var(--radius);
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border-top: 4px solid var(--primary);
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .feature-card i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-        
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .feature-card p {
-            color: var(--gray);
-        }
-        
-        .tool-section {
-            padding: 5rem 0;
-            background-color: #f5f7ff;
-        }
-        
-        .tool-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            background-color: white;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-        
-        .tool-input, .tool-output {
-            padding: 2.5rem;
-        }
-        
-        .tool-output {
-            background-color: #f8f9ff;
-            border-left: 1px solid #eee;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--dark);
-        }
-        
-        select, textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-        
-        select:focus, textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
-        }
-        
-        textarea {
-            min-height: 150px;
-            resize: vertical;
-            font-family: monospace;
-        }
-        
-        .btn-generate {
-            width: 100%;
-            background-color: var(--primary);
-            color: white;
-            padding: 15px;
-            font-size: 1.1rem;
-            margin-top: 1rem;
-        }
-        
-        .btn-generate:hover {
-            background-color: var(--secondary);
-        }
-        
-        .output-container {
-            background-color: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            border: 1px solid #ddd;
-            min-height: 300px;
-            font-family: monospace;
-            white-space: pre-wrap;
-            overflow-y: auto;
-            max-height: 500px;
-        }
-        
-        .output-placeholder {
-            color: var(--gray);
-            text-align: center;
-            padding: 3rem 1rem;
-        }
-        
-        .output-placeholder i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #ddd;
-        }
-        
-        .success-stories {
-            padding: 5rem 0;
-            background-color: white;
-        }
-        
-        .stories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .story-card {
-            background-color: #f8f9ff;
-            border-radius: var(--radius);
-            padding: 2rem;
-            border-left: 4px solid var(--success);
-        }
-        
-        .story-card h4 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .story-card h4 i {
-            color: var(--success);
-        }
-        
-        .pricing {
-            padding: 5rem 0;
-            background-color: #f5f7ff;
-        }
-        
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .pricing-card {
-            background-color: white;
-            border-radius: var(--radius);
-            padding: 2.5rem;
-            box-shadow: var(--shadow);
-            text-align: center;
-            transition: var(--transition);
-            position: relative;
-        }
-        
-        .pricing-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .pricing-card.popular {
-            border: 2px solid var(--primary);
-            transform: scale(1.05);
-        }
-        
-        .pricing-card.popular .badge {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--primary);
-            color: white;
-            padding: 5px 20px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-        
-        .price {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--secondary);
-            margin: 1.5rem 0;
-        }
-        
-        .price span {
-            font-size: 1rem;
-            color: var(--gray);
-        }
-        
-        .pricing-features {
-            list-style: none;
-            margin: 2rem 0;
-            text-align: left;
-        }
-        
-        .pricing-features li {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .pricing-features li i {
-            color: var(--success);
-        }
-        
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 4rem 0 2rem;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-        
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent);
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links a {
-            color: #ccc;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .footer-links a:hover {
-            color: var(--accent);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid #333;
-            color: #999;
-            font-size: 0.9rem;
-        }
-        
-        @media (max-width: 992px) {
-            .tool-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .header-content {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-            
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .pricing-card.popular {
-                transform: none;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hero {
-                padding: 3rem 0;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-        
-        /* Estilos para notificações */
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 99999;
-            animation: slideIn 0.3s ease;
-        }
-        
-        .notification.success {
-            background: var(--success);
-            color: white;
-        }
-        
-        .notification.error {
-            background: var(--danger);
-            color: white;
-        }
-        
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        
-        @keyframes slideOut {
-            from { transform: translateX(0); opacity: 1; }
-            to { transform: translateX(100%); opacity: 0; }
-        }
-    </style>
-</head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container header-content">
-            <div class="logo">
-                <i class="fas fa-robot"></i>
-                <span>PromptMaster Pro</span>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#features">Recursos</a></li>
-                    <li><a href="#tool">Ferramenta</a></li>
-                    <li><a href="#stories">Histórias</a></li>
-                    <li><a href="#pricing">Planos</a></li>
-                    <li><a href="#contact">Contato</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+// ===== SISTEMA DE GERAÇÃO DE PROMPTS =====
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Crie Prompts e Códigos Extraordinariamente Precisos</h1>
-            <p>Nossa ferramenta de IA avançada gera prompts otimizados e códigos impecáveis para qualquer tarefa. Transforme suas ideias em soluções milionárias com precisão cirúrgica.</p>
-            <div class="cta-buttons">
-                <a href="#tool" class="btn btn-primary">
-                    <i class="fas fa-bolt"></i> Experimente Agora
-                </a>
-                <a href="#pricing" class="btn btn-secondary">
-                    <i class="fas fa-crown"></i> Planos Premium
-                </a>
-            </div>
-        </div>
-    </section>
+// Função para gerar exemplo
+function generateExample() {
+    console.log("Botão clicado - iniciando geração...");
+    
+    const taskType = document.getElementById('task-type').value;
+    const language = document.getElementById('language').value;
+    const complexity = document.getElementById('complexity').value;
+    const description = document.getElementById('description').value;
+    
+    console.log("Parâmetros:", { taskType, language, complexity, description });
+    
+    // Dados de exemplos
+    const examples = {
+        "code-generation": {
+            "python": {
+                "beginner": `# PROMPT PERFEITO PARA IA:
+"Crie um script Python para web scraping de produtos de e-commerce com:
+1. Use requests e BeautifulSoup para acessar páginas
+2. Extraia: nome, preço, avaliação e disponibilidade
+3. Trate erros de conexão e dados ausentes
+4. Exporte os dados para CSV com timestamp
+5. Inclua comentários explicativos e docstrings"
 
-    <!-- Features -->
-    <section id="features" class="features">
-        <div class="container">
-            <div class="section-title">
-                <h2>Recursos Extraordinários</h2>
-                <p>Desenvolvemos a ferramenta mais avançada para criação de prompts e código preciso</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <i class="fas fa-magic"></i>
-                    <h3>Geração Inteligente</h3>
-                    <p>Algoritmo de IA que analisa contexto e objetivos para criar prompts otimizados que geram os melhores resultados possíveis.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-code"></i>
-                    <h3>Código Perfeito</h3>
-                    <p>Geração de código em múltiplas linguagens com boas práticas, testes incluídos e documentação automática.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Otimização Contínua</h3>
-                    <p>Sistema que aprende com cada interação para aprimorar constantemente a qualidade dos prompts e códigos gerados.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Precisão Garantida</h3>
-                    <p>Validação em múltiplas camadas garante que cada prompt e código gerado esteja livre de erros e pronto para uso.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+# CÓDIGO GERADO:
+import requests
+from bs4 import BeautifulSoup
+import csv
+from datetime import datetime
 
-    <!-- Tool Section -->
-    <section id="tool" class="tool-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Ferramenta de Criação</h2>
-                <p>Experimente agora nosso gerador de prompts e códigos precisos</p>
-            </div>
-            <div class="tool-container">
-                <div class="tool-input">
-                    <h3>Configure sua solicitação</h3>
-                    <p>Preencha os detalhes abaixo para gerar um prompt ou código perfeito</p>
-                    
-                    <div class="form-group">
-                        <label for="task-type">Tipo de Tarefa</label>
-                        <select id="task-type">
-                            <option value="code-generation">Geração de Código</option>
-                            <option value="prompt-optimization">Otimização de Prompt</option>
-                            <option value="business-idea">Ideia de Negócio</option>
-                            <option value="marketing-copy">Cópia de Marketing</option>
-                            <option value="data-analysis">Análise de Dados</option>
-                        </select>
+class EcommerceScraper:
+    """
+    Classe para scraping de produtos de e-commerce.
+    """
+    
+    def __init__(self, base_url):
+        self.base_url = base_url
+        self.headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        }
+    
+    def fetch_page(self, url):
+        """Busca uma página web com tratamento de erros."""
+        try:
+            response = requests.get(url, headers=self.headers, timeout=10)
+            response.raise_for_status()
+            return response.text
+        except requests.RequestException as e:
+            print(f"Erro ao acessar {url}: {e}")
+            return None
+    
+    def parse_products(self, html):
+        """Analisa o HTML e extrai dados dos produtos."""
+        if not html:
+            return []
+        
+        soup = BeautifulSoup(html, 'html.parser')
+        products = []
+        
+        # Seletor genérico - ajuste conforme o site
+        product_elements = soup.select('.product-item') or soup.select('.product-card')
+        
+        for element in product_elements:
+            try:
+                name = element.select_one('.product-name')?.text.trim() || "N/A"
+                price = element.select_one('.product-price')?.text.trim() || "N/A"
+                rating = element.select_one('.product-rating')?.text.trim() || "N/A"
+                
+                products.append({
+                    'name': name,
+                    'price': price,
+                    'rating': rating
+                })
+            except Exception as e:
+                console.log("Erro ao extrair produto:", e)
+                continue
+        
+        return products
+    
+    def save_to_csv(self, products, filename=None):
+        """Salva produtos em arquivo CSV."""
+        if not filename:
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            filename = f'produtos_{timestamp}.csv'
+        
+        if not products:
+            print("Nenhum produto para salvar.")
+            return
+        
+        with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow(['Nome', 'Preço', 'Avaliação'])
+            for product in products:
+                writer.writerow([product.name, product.price, product.rating])
+        
+        print(f"Dados salvos em {filename}")
+        return filename
+
+# Exemplo de uso:
+if __name__ == "__main__":
+    scraper = EcommerceScraper("https://exemplo-ecommerce.com")
+    html = scraper.fetch_page("https://exemplo-ecommerce.com/produtos")
+    
+    if html:
+        products = scraper.parse_products(html)
+        if products:
+            scraper.save_to_csv(products)
+            print(f"Extraídos {len(products)} produtos com sucesso!")
+        else:
+            print("Nenhum produto encontrado.")
+    else:
+        print("Não foi possível acessar a página.")`,
+                
+                "intermediate": `# PROMPT OTIMIZADO PARA IA:
+"Desenvolva uma classe Python robusta para web scraping com:
+1. Padrão Strategy para diferentes sites de e-commerce
+2. Cache com Redis para reduzir requests repetidos
+3. Rotação de User-Agents e proxies
+4. Sistema de fila para scraping assíncrono
+5. Logs estruturados e métricas de performance"
+
+# CÓDIGO GERADO:
+import requests
+from bs4 import BeautifulSoup
+import redis
+import logging
+from abc import ABC, abstractmethod
+import random
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+class ScrapingStrategy(ABC):
+    """Interface Strategy para diferentes sites."""
+    
+    @abstractmethod
+    def extract_products(self, html):
+        pass
+    
+    @abstractmethod
+    def build_url(self, page):
+        pass
+
+class AmazonStrategy(ScrapingStrategy):
+    def extract_products(self, html):
+        soup = BeautifulSoup(html, 'html.parser')
+        products = []
+        
+        items = soup.select('div[data-component-type="s-search-result"]')
+        for item in items:
+            try:
+                name_elem = item.select_one('h2 a span')
+                price_elem = item.select_one('.a-price-whole')
+                rating_elem = item.select_one('.a-icon-alt')
+                
+                product = {
+                    'name': name_elem.text.strip() if name_elem else 'N/A',
+                    'price': price_elem.text if price_elem else 'N/A',
+                    'rating': rating_elem.text.split()[0] if rating_elem else 'N/A',
+                    'url': 'https://amazon.com' + item.select_one('h2 a')['href']
+                }
+                products.append(product)
+            except Exception as e:
+                logger.debug(f"Erro Amazon: {e}")
+        
+        return products
+    
+    def build_url(self, page):
+        return f"https://www.amazon.com/s?k=python+books&page={page}"
+
+class EcommerceScraperAdvanced:
+    def __init__(self, strategy, cache_ttl=3600):
+        self.strategy = strategy
+        self.redis_client = redis.Redis(host='localhost', port=6379, db=0)
+        self.cache_ttl = cache_ttl
+        self.session = requests.Session()
+        
+        self.user_agents = [
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15'
+        ]
+    
+    def get_random_headers(self):
+        return {
+            'User-Agent': random.choice(self.user_agents),
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+        }
+    
+    def fetch_with_cache(self, url):
+        cache_key = f"scraper:{hash(url)}"
+        
+        cached = self.redis_client.get(cache_key)
+        if cached:
+            logger.info(f"Cache hit: {url}")
+            return cached.decode('utf-8')
+        
+        logger.info(f"Fetching: {url}")
+        try:
+            headers = self.get_random_headers()
+            response = self.session.get(url, headers=headers, timeout=15)
+            response.raise_for_status()
+            
+            html = response.text
+            self.redis_client.setex(cache_key, self.cache_ttl, html)
+            
+            return html
+        except Exception as e:
+            logger.error(f"Erro ao buscar {url}: {e}")
+            return None
+    
+    def scrape_page(self, page_num):
+        url = self.strategy.build_url(page_num)
+        html = self.fetch_with_cache(url)
+        
+        if not html:
+            return []
+        
+        return self.strategy.extract_products(html)
+    
+    def scrape_multiple_pages(self, start_page, end_page, max_workers=3):
+        all_products = []
+        
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            futures = []
+            for page in range(start_page, end_page + 1):
+                futures.append(executor.submit(self.scrape_page, page))
+            
+            for future in as_completed(futures):
+                try:
+                    products = future.result()
+                    all_products.extend(products)
+                except Exception as e:
+                    logger.error(f"Erro em página: {e}")
+        
+        return all_products
+
+# Uso:
+strategy = AmazonStrategy()
+scraper = EcommerceScraperAdvanced(strategy)
+products = scraper.scrape_multiple_pages(1, 3)
+print(f"Total de produtos: {len(products)}")`
+            },
+            "javascript": {
+                "intermediate": `// PROMPT PERFEITO PARA IA:
+"Crie uma aplicação React com Next.js para dashboard de analytics com:
+1. Gráficos interativos usando Chart.js ou Recharts
+2. Filtros dinâmicos por período e categoria
+3. Dashboard responsivo com grid flexível
+4. API routes para dados mockados
+5. Sistema de temas claro/escuro
+6. Testes básicos com Jest"
+
+// CÓDIGO GERADO:
+import { useState, useEffect } from 'react';
+import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell } from 'recharts';
+
+const AnalyticsDashboard = () => {
+    const [data, setData] = useState({ sales: [], categories: [] });
+    const [dateRange, setDateRange] = useState({ start: '2024-01-01', end: '2024-01-31' });
+    const [darkMode, setDarkMode] = useState(false);
+    const [loading, setLoading] = useState(true);
+    
+    useEffect(() => {
+        fetchData();
+    }, [dateRange]);
+    
+    const fetchData = async () => {
+        setLoading(true);
+        try {
+            const response = await fetch(\`/api/analytics?start=\${dateRange.start}&end=\${dateRange.end}\`);
+            const result = await response.json();
+            setData(result.data);
+        } catch (error) {
+            console.error('Erro ao buscar dados:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+    
+    const salesData = data.sales || [];
+    const categoryData = data.categories || [];
+    
+    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8'];
+    
+    return (
+        <div className={\`min-h-screen p-6 \${darkMode ? 'bg-gray-900 text-white' : 'bg-gray-50'}\`}>
+            <div className="max-w-7xl mx-auto">
+                <header className="flex justify-between items-center mb-8">
+                    <div>
+                        <h1 className="text-3xl font-bold">Dashboard de Analytics</h1>
+                        <p className="text-gray-500">Visualize métricas do seu negócio</p>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="language">Linguagem/Tecnologia</label>
-                        <select id="language">
-                            <option value="python">Python</option>
-                            <option value="javascript">JavaScript</option>
-                            <option value="html-css">HTML/CSS</option>
-                            <option value="sql">SQL</option>
-                            <option value="react">React</option>
-                            <option value="nodejs">Node.js</option>
-                        </select>
+                    <div className="flex items-center gap-4">
+                        <button
+                            onClick={() => setDarkMode(!darkMode)}
+                            className="px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700"
+                        >
+                            {darkMode ? '🌞 Modo Claro' : '🌙 Modo Escuro'}
+                        </button>
+                        
+                        <input
+                            type="date"
+                            value={dateRange.start}
+                            onChange={(e) => setDateRange({...dateRange, start: e.target.value})}
+                            className="px-3 py-2 border rounded"
+                        />
+                        <span>até</span>
+                        <input
+                            type="date"
+                            value={dateRange.end}
+                            onChange={(e) => setDateRange({...dateRange, end: e.target.value})}
+                            className="px-3 py-2 border rounded"
+                        />
+                    </div>
+                </header>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div className={\`p-6 rounded-lg shadow \${darkMode ? 'bg-gray-800' : 'bg-white'}\`}>
+                        <h3 className="text-lg font-semibold mb-2">Receita Total</h3>
+                        <p className="text-2xl font-bold text-green-500">R$ 125.430,75</p>
+                        <p className="text-sm text-gray-500">↑ 12% em relação ao mês anterior</p>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="description">Descreva sua necessidade</label>
-                        <textarea id="description" placeholder="Ex: Preciso de um código Python para web scraping de dados de produtos em um e-commerce, com tratamento de erros e exportação para CSV...">Preciso de um código Python para web scraping de dados de produtos em um e-commerce, com tratamento de erros e exportação para CSV</textarea>
+                    <div className={\`p-6 rounded-lg shadow \${darkMode ? 'bg-gray-800' : 'bg-white'}\`}>
+                        <h3 className="text-lg font-semibold mb-2">Taxa de Conversão</h3>
+                        <p className="text-2xl font-bold text-blue-500">4.3%</p>
+                        <p className="text-sm text-gray-500">↑ 0.5% em relação ao mês anterior</p>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="complexity">Nível de Complexidade</label>
-                        <select id="complexity">
-                            <option value="beginner">Iniciante</option>
-                            <option value="intermediate" selected>Intermediário</option>
-                            <option value="advanced">Avançado</option>
-                            <option value="expert">Especialista</option>
-                        </select>
+                    <div className={\`p-6 rounded-lg shadow \${darkMode ? 'bg-gray-800' : 'bg-white'}\`}>
+                        <h3 className="text-lg font-semibold mb-2">Pedidos Totais</h3>
+                        <p className="text-2xl font-bold text-purple-500">511</p>
+                        <p className="text-sm text-gray-500">↑ 8.7% em relação ao mês anterior</p>
                     </div>
                     
-                    <button id="generate-btn" class="btn btn-primary btn-generate">
-                        <i class="fas fa-bolt"></i> Gerar Prompt e Código Perfeitos
-                    </button>
+                    <div className={\`p-6 rounded-lg shadow \${darkMode ? 'bg-gray-800' : 'bg-white'}\`}>
+                        <h3 className="text-lg font-semibold mb-2">Valor Médio</h3>
+                        <p className="text-2xl font-bold text-yellow-500">R$ 245,50</p>
+                        <p className="text-sm text-gray-500">↓ 1.5% em relação ao mês anterior</p>
+                    </div>
                 </div>
                 
-                <div class="tool-output">
-                    <h3>Resultado Gerado</h3>
-                    <p>Seu prompt e código precisos aparecerão aqui</p>
-                    
-                    <div id="output-container" class="output-container">
-                        <div class="output-placeholder">
-                            <i class="fas fa-code"></i>
-                            <p>Configure os parâmetros à esquerda e clique em "Gerar" para criar seu prompt e código perfeitos.</p>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div className={\`p-6 rounded-lg shadow \${darkMode ? 'bg-gray-800' : 'bg-white'}\`}>
+                        <h3 className="text-xl font-bold mb-4">Vendas ao Longo do Tempo</h3>
+                        <div className="h-80">
+                            <LineChart width={500} height={300} data={salesData}>
+                                <Line type="monotone" dataKey="sales" stroke="#8884d8" />
+                            </LineChart>
                         </div>
                     </div>
                     
-                    <div style="margin-top: 20px; display: flex; gap: 10px;">
-                        <button id="copy-prompt-btn" class="btn btn-secondary" style="flex: 1;" disabled>
-                            <i class="fas fa-copy"></i> Copiar Prompt
-                        </button>
-                        <button id="copy-code-btn" class="btn btn-secondary" style="flex: 1;" disabled>
-                            <i class="fas fa-copy"></i> Copiar Código
-                        </button>
+                    <div className={\`p-6 rounded-lg shadow \${darkMode ? 'bg-gray-800' : 'bg-white'}\`}>
+                        <h3 className="text-xl font-bold mb-4">Vendas por Categoria</h3>
+                        <div className="h-80">
+                            <PieChart width={400} height={300}>
+                                <Pie
+                                    data={categoryData}
+                                    cx="50%"
+                                    cy="50%"
+                                    outerRadius={100}
+                                    fill="#8884d8"
+                                    dataKey="value"
+                                    label
+                                >
+                                    {categoryData.map((entry, index) => (
+                                        <Cell key={\`cell-\${index}\`} fill={COLORS[index % COLORS.length]} />
+                                    ))}
+                                </Pie>
+                            </PieChart>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Success Stories -->
-    <section id="stories" class="success-stories">
-        <div class="container">
-            <div class="section-title">
-                <h2>Histórias de Sucesso</h2>
-                <p>Como nossa ferramenta já ajudou a criar soluções milionárias</p>
-            </div>
-            <div class="stories-grid">
-                <div class="story-card">
-                    <h4><i class="fas fa-user-tie"></i> João Silva - Startup de IA</h4>
-                    <p>"Com os prompts gerados pela ferramenta, conseguimos otimizar nosso algoritmo de recomendação em 40%. Em 6 meses, nossa startup foi avaliada em R$ 5 milhões."</p>
-                </div>
-                <div class="story-card">
-                    <h4><i class="fas fa-chart-bar"></i> Maria Souza - Consultoria de Dados</h4>
-                    <p>"A geração automática de código para análise de dados reduziu nosso tempo de desenvolvimento em 70%. Fechamos contratos de R$ 2,3 milhões no último ano."</p>
-                </div>
-                <div class="story-card">
-                    <h4><i class="fas fa-shopping-cart"></i> Carlos Mendes - E-commerce</h4>
-                    <p>"Os prompts para otimização de copywriting aumentaram nossa taxa de conversão em 35%. Nossa receita anual cresceu para R$ 8,7 milhões."</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing -->
-    <section id="pricing" class="pricing">
-        <div class="container">
-            <div class="section-title">
-                <h2>Planos para Todos os Objetivos</h2>
-                <p>Escolha o plano ideal para sua jornada rumo ao sucesso financeiro</p>
-            </div>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <h3>Básico</h3>
-                    <div class="price">R$ 49<span>/mês</span></div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Até 100 gerações por mês</li>
-                        <li><i class="fas fa-check"></i> 5 linguagens de programação</li>
-                        <li><i class="fas fa-check"></i> Suporte por email</li>
-                        <li><i class="fas fa-times"></i> Templates avançados</li>
-                        <li><i class="fas fa-times"></i> Validação premium</li>
-                    </ul>
-                    <button class="btn btn-secondary">Começar Agora</button>
-                </div>
                 
-                <div class="pricing-card popular">
-                    <div class="badge">Mais Popular</div>
-                    <h3>Profissional</h3>
-                    <div class="price">R$ 149<span>/mês</span></div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Gerações ilimitadas</li>
-                        <li><i class="fas fa-check"></i> 15+ linguagens de programação</li>
-                        <li><i class="fas fa-check"></i> Suporte prioritário</li>
-                        <li><i class="fas fa-check"></i> Todos os templates</li>
-                        <li><i class="fas fa-check"></i> Validação premium</li>
-                    </ul>
-                    <button class="btn btn-primary">Escolher Plano</button>
-                </div>
-                
-                <div class="pricing-card">
-                    <h3>Empresarial</h3>
-                    <div class="price">R$ 499<span>/mês</span></div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Tudo do Profissional</li>
-                        <li><i class="fas fa-check"></i> Múltiplos usuários</li>
-                        <li><i class="fas fa-check"></i> API completa</li>
-                        <li><i class="fas fa-check"></i> Treinamento personalizado</li>
-                        <li><i class="fas fa-check"></i> Garantia de resultados</li>
-                    </ul>
-                    <button class="btn btn-secondary">Fale Conosco</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seção de Pagamento -->
-    <section class="cta-payment" style="
-        background: linear-gradient(135deg, #4361ee, #3a0ca3);
-        color: white;
-        padding: 4rem 0;
-        text-align: center;
-        margin-top: 2rem;
-    ">
-        <div class="container">
-            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">
-                🚀 Pronto para Revolucionar seu Trabalho?
-            </h2>
-            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto 2rem;">
-                Comece agora com 7 dias gratuitos. Cancele quando quiser.
-            </p>
-            
-            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
-                <!-- Botão Mercado Pago -->
-                <a href="https://mpago.la/2Qf4Fqi" 
-                   target="_blank"
-                   style="
-                        background: white;
-                        color: #4361ee;
-                        padding: 18px 36px;
-                        border-radius: 50px;
-                        font-weight: bold;
-                        font-size: 1.1rem;
-                        text-decoration: none;
-                        display: inline-flex;
-                        align-items: center;
-                        gap: 10px;
-                        transition: all 0.3s;
-                        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-                   "
-                   onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 10px 25px rgba(0,0,0,0.3)'"
-                   onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.2)'">
-                    <i class="fas fa-bolt"></i>
-                    QUERO COMEÇAR AGORA - R$ 29,90/mês
-                </a>
-                
-                <!-- Botão Pix -->
-                <button onclick="openPixModal()"
-                   style="
-                        background: transparent;
-                        color: white;
-                        border: 2px solid white;
-                        padding: 18px 36px;
-                        border-radius: 50px;
-                        font-weight: bold;
-                        font-size: 1.1rem;
-                        cursor: pointer;
-                        display: inline-flex;
-                        align-items: center;
-                        gap: 10px;
-                        transition: all 0.3s;
-                   "
-                   onmouseover="this.style.background='rgba(255,255,255,0.1)'"
-                   onmouseout="this.style.background='transparent'">
-                    <i class="fas fa-qrcode"></i>
-                    PAGAR COM PIX
-                </button>
-            </div>
-            
-            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 2rem;">
-                <div style="text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
-                    <div style="font-size: 0.9rem;">7 dias grátis</div>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
-                    <div style="font-size: 0.9rem;">Cancelamento fácil</div>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
-                    <div style="font-size: 0.9rem;">Suporte 24h</div>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
-                    <div style="font-size: 0.9rem;">Atualizações grátis</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>PromptMaster Pro</h3>
-                    <p>A ferramenta definitiva para criação de prompts e códigos precisos que transformam ideias em soluções milionárias.</p>
-                    <div style="margin-top: 20px; display: flex; gap: 15px;">
-                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-twitter"></i></a>
-                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
-                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-youtube"></i></a>
+                {loading && (
+                    <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
+                        <div className="text-white text-xl">Carregando dados...</div>
                     </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Links Rápidos</h3>
-                    <ul class="footer-links">
-                        <li><a href="#features">Recursos</a></li>
-                        <li><a href="#tool">Ferramenta</a></li>
-                        <li><a href="#stories">Histórias</a></li>
-                        <li><a href="#pricing">Planos</a></li>
-                        <li><a href="#">Blog</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contato</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-envelope"></i> promptmasterpro.contato@gmail.com</li>
-                        <li><i class="fab fa-whatsapp"></i> (11) 99999-9999</li>
-                        <li><i class="fas fa-clock"></i> Seg-Sex: 9h-18h</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2024 PromptMaster Pro. Todos os direitos reservados. | Desenvolvido para criar milionários</p>
+                )}
             </div>
         </div>
-    </footer>
+    );
+};
 
-    <!-- Modal Pix -->
-    <div id="pixModal" style="
-        display: none;
+export default AnalyticsDashboard;`
+            }
+        },
+        "prompt-optimization": {
+            "python": {
+                "beginner": `# PROMPT ORIGINAL (ruim):
+"faça um código python para calcular média"
+
+# PROMPT OTIMIZADO (perfeito):
+"Crie uma função Python que:
+1. Receba uma lista de números inteiros ou floats
+2. Calcule a média aritmética dos valores
+3. Retorne a média com 2 casas decimais
+4. Inclua tratamento de erros para:
+   - Lista vazia (raise ValueError)
+   - Valores não numéricos (ignorar ou tratar)
+5. Adicione docstring com exemplos de uso
+6. Inclua testes unitários básicos
+
+Exemplo de uso esperado:
+>>> calcular_media([10, 20, 30, 40, 50])
+30.0
+>>> calcular_media([1.5, 2.5, 3.5])
+2.5"
+
+# CÓDIGO GERADO:
+def calcular_media(numeros):
+    """
+    Calcula a média aritmética de uma lista de números.
+    
+    Args:
+        numeros (list): Lista de números (int ou float)
+        
+    Returns:
+        float: Média aritmética com 2 casas decimais
+        
+    Raises:
+        ValueError: Se a lista estiver vazia
+        
+    Exemplos:
+        >>> calcular_media([10, 20, 30, 40, 50])
+        30.0
+        >>> calcular_media([1.5, 2.5, 3.5])
+        2.5
+    """
+    if not numeros:
+        raise ValueError("A lista não pode estar vazia")
+    
+    # Filtra apenas valores numéricos
+    valores_validos = []
+    for num in numeros:
+        if isinstance(num, (int, float)):
+            valores_validos.append(num)
+        else:
+            print(f"Aviso: Valor '{num}' ignorado (não é número)")
+    
+    if not valores_validos:
+        raise ValueError("Nenhum valor numérico válido na lista")
+    
+    media = sum(valores_validos) / len(valores_validos)
+    return round(media, 2)
+
+# Testes unitários básicos
+if __name__ == "__main__":
+    # Teste 1: Lista normal
+    assert calcular_media([10, 20, 30, 40, 50]) == 30.0
+    
+    # Teste 2: Lista com floats
+    assert calcular_media([1.5, 2.5, 3.5]) == 2.5
+    
+    # Teste 3: Lista com valores inválidos
+    assert calcular_media([10, "20", 30, None, 50]) == 30.0
+    
+    print("Todos os testes passaram!")
+    
+    # Teste de erro (descomente para verificar)
+    # calcular_media([])  # Deve levantar ValueError`
+            }
+        },
+        "business-idea": {
+            "general": {
+                "intermediate": `# PROMPT PERFEITO PARA IA:
+"Desenvolva um plano de negócios completo para uma startup de IA com:
+1. Nome e posicionamento no mercado
+2. Problema que resolve e solução proposta
+3. Modelo de negócio (freemium, SaaS, B2B)
+4. Público-alvo e persona
+5. Projeção financeira para 3 anos
+6. Estratégia de marketing e aquisição
+7. Plano de desenvolvimento de produto
+8. Análise de concorrentes e diferencial competitivo"
+
+# PLANO DE NEGÓCIOS GERADO:
+
+## 1. Nome e Posicionamento
+**PromptMaster Pro** - Plataforma de IA que transforma ideias em prompts e códigos perfeitos
+
+**Posicionamento:** "O copiloto definitivo para desenvolvedores e profissionais de IA"
+
+## 2. Problema & Solução
+**Problema:** Desenvolvedores perdem horas criando prompts ineficientes e códigos com erros
+
+**Solução:** Plataforma que gera prompts otimizados e códigos impecáveis em segundos
+
+## 3. Modelo de Negócio
+**Freemium:**
+- Básico: Gratuito (100 prompts/mês)
+- Pro: R$ 29,90/mês (500 prompts/mês)
+- Empresarial: R$ 99,90/mês (5000 prompts/mês, API)
+
+**Receitas Adicionais:**
+- Consultoria personalizada
+- Treinamentos corporativos
+- Parcerias com empresas de IA
+
+## 4. Público-Alvo
+**Persona Principal:** João, 28 anos
+- Desenvolvedor Full Stack
+- Trabalha em startup de tecnologia
+- Usa ChatGPT/Claude diariamente
+- Frustrado com prompts genéricos
+- Disposto a pagar por produtividade
+
+## 5. Projeção Financeira (3 anos)
+**Ano 1:**
+- 1.000 usuários gratuitos
+- 100 assinantes Pro (R$ 2.990/mês)
+- 20 clientes Empresarial (R$ 1.998/mês)
+- Receita Mensal: R$ 4.988
+- Receita Anual: R$ 59.856
+
+**Ano 2:**
+- 5.000 usuários gratuitos
+- 500 assinantes Pro (R$ 14.950/mês)
+- 100 clientes Empresarial (R$ 9.990/mês)
+- Receita Mensal: R$ 24.940
+- Receita Anual: R$ 299.280
+
+**Ano 3:**
+- 20.000 usuários gratuitos
+- 2.000 assinantes Pro (R$ 59.800/mês)
+- 500 clientes Empresarial (R$ 49.950/mês)
+- Receita Mensal: R$ 109.750
+- Receita Anual: R$ 1.317.000
+
+## 6. Estratégia de Marketing
+**Fase 1 (Lançamento):**
+- Beta para desenvolvedores influentes
+- Conteúdo no LinkedIn e Twitter
+- Parcerias com comunidades de programação
+
+**Fase 2 (Crescimento):**
+- SEO para termos como "prompt engineering"
+- Webinars sobre IA produtiva
+- Programa de afiliados (20% comissão)
+
+**Fase 3 (Consolidação):**
+- Participação em conferências de IA
+- Casos de sucesso com clientes
+- Integrações com ferramentas populares
+
+## 7. Plano de Desenvolvimento
+**Mês 1-3:** MVP (gerador básico de prompts)
+**Mês 4-6:** Sistema de templates e histórico
+**Mês 7-9:** API pública e integrações
+**Mês 10-12:** Ferramentas avançadas e colaboração
+
+## 8. Diferencial Competitivo
+✅ **Foco em precisão** - Códigos testáveis e prompts otimizados
+✅ **Contexto profundo** - Entende requisitos específicos
+✅ **Ecossistema** - Templates compartilhados pela comunidade
+✅ **Suporte especializado** - Especialistas em prompt engineering
+
+**Investimento Inicial Necessário:** R$ 50.000
+**ROI Estimado:** 12 meses
+**Potencial de Mercado:** R$ 500M+ (dev tools + IA)`
+            }
+        }
+    };
+    
+    // Gera o conteúdo baseado nas seleções
+    let generatedContent = "";
+    
+    if (examples[taskType] && examples[taskType][language] && examples[taskType][language][complexity]) {
+        generatedContent = examples[taskType][language][complexity];
+    } else if (examples[taskType] && examples[taskType][language]) {
+        // Pega qualquer complexidade disponível
+        const availableComplexities = Object.keys(examples[taskType][language]);
+        if (availableComplexities.length > 0) {
+            generatedContent = examples[taskType][language][availableComplexities[0]];
+        }
+    } else if (examples[taskType]) {
+        // Pega qualquer linguagem disponível
+        const availableLanguages = Object.keys(examples[taskType]);
+        if (availableLanguages.length > 0) {
+            const firstLang = availableLanguages[0];
+            const availableComplexities = Object.keys(examples[taskType][firstLang]);
+            if (availableComplexities.length > 0) {
+                generatedContent = examples[taskType][firstLang][availableComplexities[0]];
+            }
+        }
+    } else {
+        // Conteúdo padrão se não encontrar
+        generatedContent = `# PROMPT PERFEITO PARA IA (${taskType} - ${language} - ${complexity}):
+
+"${description || 'Descreva sua necessidade acima para gerar um prompt personalizado'}"
+
+# CÓDIGO GERADO:
+
+// Este é um exemplo de código ${language} para ${taskType}
+// A ferramenta completa analisaria seu contexto específico
+// e geraria uma solução personalizada com precisão extraordinária
+
+function solucaoGerada() {
+    console.log("Solução otimizada para seu caso de uso");
+    
+    // Características incluídas:
+    // 1. Arquitetura limpa e mantenível
+    // 2. Tratamento de erros robusto
+    // 3. Performance otimizada
+    // 4. Documentação clara
+    // 5. Testabilidade facilitada
+    
+    return "Resultado preciso e pronto para produção";
+}
+
+// Para obter a solução completa e personalizada:
+// 1. Descreva detalhadamente seu caso de uso
+// 2. Especifique restrições e requisitos
+// 3. Utilize o PromptMaster Pro para geração automática`;
+    }
+    
+    // Atualiza a área de saída
+    const outputArea = document.getElementById('output-container');
+    if (outputArea) {
+        outputArea.innerHTML = `<pre style="white-space: pre-wrap; word-wrap: break-word; font-family: 'Courier New', monospace; background: #f8f9fa; padding: 20px; border-radius: 8px; max-height: 500px; overflow-y: auto;">${generatedContent}</pre>`;
+        
+        // Habilita botões de cópia
+        if (copyPromptBtn) copyPromptBtn.disabled = false;
+        if (copyCodeBtn) copyCodeBtn.disabled = false;
+        
+        // Feedback visual
+        generateBtn.innerHTML = '<i class="fas fa-check"></i> Gerado com Sucesso!';
+        generateBtn.style.backgroundColor = '#06d6a0';
+        
+        setTimeout(() => {
+            generateBtn.innerHTML = '<i class="fas fa-bolt"></i> Gerar Prompt e Código Perfeitos';
+            generateBtn.style.backgroundColor = '';
+        }, 2000);
+        
+        console.log("Conteúdo gerado com sucesso!");
+    } else {
+        console.error("Elemento output-container não encontrado!");
+    }
+}
+
+// Função para copiar prompt
+function copyPrompt() {
+    const outputArea = document.getElementById('output-container');
+    if (!outputArea) return;
+    
+    const text = outputArea.innerText;
+    const promptStart = text.indexOf('# PROMPT');
+    const promptEnd = text.indexOf('# CÓDIGO GERADO:');
+    
+    if (promptStart !== -1 && promptEnd !== -1) {
+        const promptText = text.substring(promptStart, promptEnd);
+        navigator.clipboard.writeText(promptText).then(() => {
+            showNotification('Prompt copiado para a área de transferência!', 'success');
+        });
+    } else {
+        showNotification('Não foi possível encontrar o prompt no conteúdo.', 'error');
+    }
+}
+
+// Função para copiar código
+function copyCode() {
+    const outputArea = document.getElementById('output-container');
+    if (!outputArea) return;
+    
+    const text = outputArea.innerText;
+    const codeStart = text.indexOf('# CÓDIGO GERADO:');
+    
+    if (codeStart !== -1) {
+        const codeText = text.substring(codeStart + 16); // +16 para pular o título
+        navigator.clipboard.writeText(codeText).then(() => {
+            showNotification('Código copiado para a área de transferência!', 'success');
+        });
+    } else {
+        showNotification('Não foi possível encontrar o código no conteúdo.', 'error');
+    }
+}
+
+// Função para mostrar notificação
+function showNotification(message, type) {
+    // Remove notificação anterior
+    const oldNotification = document.querySelector('.notification');
+    if (oldNotification) oldNotification.remove();
+    
+    // Cria nova notificação
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.innerHTML = `
+        <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+        <span>${message}</span>
+    `;
+    
+    // Estilos inline
+    notification.style.cssText = `
         position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background: rgba(0,0,0,0.8);
-        z-index: 10000;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? '#06d6a0' : '#ef476f'};
+        color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        display: flex;
         align-items: center;
-        justify-content: center;
-    ">
-        <div style="
-            background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            max-width: 450px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        ">
-            <h3 style="color: #333; margin-bottom: 1.5rem; font-size: 1.5rem;">
-                <i class="fas fa-qrcode" style="color: #32BCAD; margin-right: 10px;"></i>
-                Pagamento via PIX
-            </h3>
-            
-            <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
-                <p style="margin-bottom: 0.5rem; color: #666;">
-                    <strong>Chave PIX (CPF):</strong>
-                </p>
-                <p style="
-                    background: white;
-                    padding: 12px;
-                    border-radius: 8px;
-                    border: 2px dashed #32BCAD;
-                    font-family: monospace;
-                    font-size: 1.1rem;
-                    color: #333;
-                    margin-bottom: 1rem;
-                ">
-                    123.456.789-00
-                </p>
-                
-                <button onclick="copyPixKey()"
-                        style="
-                            background: #32BCAD;
-                            color: white;
-                            border: none;
-                            padding: 10px 20px;
-                            border-radius: 5px;
-                            cursor: pointer;
-                            font-weight: bold;
-                            margin-bottom: 1rem;
-                        ">
-                    <i class="fas fa-copy"></i> Copiar Chave PIX
-                </button>
-                
-                <div style="margin-top: 1.5rem;">
-                    <p style="margin-bottom: 0.5rem; color: #666;">
-                        <strong>Valor:</strong>
-                    </p>
-                    <p style="font-size: 1.8rem; color: #333; font-weight: bold;">
-                        R$ 29,90
-                    </p>
-                    <p style="color: #666; font-size: 0.9rem;">
-                        Nome: <strong>PromptMaster Pro</strong>
-                    </p>
-                </div>
-            </div>
-            
-            <p style="color: #666; font-size: 0.9rem; margin-bottom: 1.5rem;">
-                ⏱️ O pagamento é confirmado em até 30 minutos<br>
-                📧 Envie o comprovante para: promptmasterpro.contato@gmail.com
-            </p>
-            
-            <button onclick="closePixModal()"
-                    style="
-                        background: #4361ee;
-                        color: white;
-                        border: none;
-                        padding: 12px 30px;
-                        border-radius: 5px;
-                        cursor: pointer;
-                        font-weight: bold;
-                        font-size: 1rem;
-                    ">
-                <i class="fas fa-check"></i> Entendido!
-            </button>
-        </div>
-    </div>
+        gap: 10px;
+        z-index: 99999;
+        animation: slideIn 0.3s ease;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Remove após 3 segundos
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 3000);
+}
 
-    <script>
-        // ===== CONFIGURAÇÃO DA FERRAMENTA =====
-        
-        // Elementos DOM
-        const generateBtn = document.getElementById('generate-btn');
-        const outputContainer = document.getElementById('output-container');
-        const copyPromptBtn = document.getElementById('copy-prompt-btn');
-        const copyCodeBtn = document.getElementById('copy-code-btn');
-        
-        // Dados de exemplos para geração
-        const examples = {
-            "code-generation": {
-                "python": {
-                    "beginner": `# PROMPT PERFEITO PARA IA:
-"Crie um script Python para web scraping de produtos de e-commerce com:
-1. Use requests e BeautifulSoup
-2. Extraia
+// Funções do modal Pix
+function openPixModal() {
+    const modal = document.getElementById('pixModal');
+    if (modal) modal.style.display = 'flex';
+}
+
+function closePixModal() {
+    const modal = document.getElementById('pixModal');
+    if (modal) modal.style.display = 'none';
+}
+
+function copyPixKey() {
+    const pixKey = '123.456.789-00';
+    navigator.clipboard.writeText(pixKey).then(() => {
+        showNotification('Chave PIX copiada! Cole no seu aplicativo bancário.', 'success');
+    });
+}
+
+// Inicialização quando a página carrega
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("Página carregada - inicializando sistema...");
+    
+    // Configura botões
+    const generateBtn = document.getElementById('generate-btn');
+    const copyPromptBtn = document.getElementById('copy-prompt-btn');
+    const copyCodeBtn = document.getElementById('copy-code-btn');
+    
+    if (generateBtn) {
+        generateBtn.addEventListener('click', generateExample);
+        console.log("Botão de geração configurado");
+    } else {
+        console.error("Botão generate-btn não encontrado!");
+    }
+    
+    if (copyPromptBtn) {
+        copyPromptBtn.addEventListener('click', copyPrompt);
+    }
+    
+    if (copyCodeBtn) {
+        copyCodeBtn.addEventListener('click', copyCode);
+    }
+    
+    // Configura modal Pix
+    const pixModal = document.getElementById('pixModal');
+    if (pixModal) {
+        pixModal.addEventListener('click', function(e) {
+            if (e.target === this) closePixModal();
+        });
+    }
+    
+    // Fechar modal com ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closePixModal();
+    });
+    
+    // Gera conteúdo inicial
+    setTimeout(generateExample, 500);
+    
+    console.log("Sistema inicializado com sucesso!");
+});
+
+// Adiciona CSS para animações
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideIn {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    
+    @keyframes slideOut {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
+    }
+`;
+document.head.appendChild(style);

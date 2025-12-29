@@ -1,7 +1,3 @@
-promptmaster-site
-
-promptmaster-site
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -412,123 +408,7 @@ promptmaster-site
         .pricing-features li i {
             color: var(--success);
         }
-        <!-- PROCURE a seção de preços (perto do final) -->
-<!-- DEPOIS da seção de preços, ANTES do footer, adicione: -->
-
-<section class="cta-payment" style="
-    background: linear-gradient(135deg, #4361ee, #3a0ca3);
-    color: white;
-    padding: 4rem 0;
-    text-align: center;
-">
-    <div class="container">
-        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">
-            🚀 Pronto para Revolucionar seu Trabalho?
-        </h2>
-        <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto 2rem;">
-            Comece agora com 7 dias gratuitos. Cancele quando quiser.
-        </p>
         
-        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-            <!-- Botão principal -->
-            <a href="https://mpago.la/https://mpago.la/2Qf4Fqi" 
-               target="_blank"
-               style="
-                    background: white;
-                    color: #4361ee;
-                    padding: 16px 32px;
-                    border-radius: 50px;
-                    font-weight: bold;
-                    font-size: 1.1rem;
-                    text-decoration: none;
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 10px;
-                    transition: all 0.3s;
-               "
-               onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.2)'"
-               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                <i class="fas fa-bolt"></i>
-                QUERO COMEÇAR AGORA - R$ 29,90/mês
-            </a>
-            
-            <https://mpago.la/2Qf4Fqi>
-            <a href="#pix-payment" 
-               style="
-                    background: transparent;
-                    color: white;
-                    border: 2px solid white;
-                    padding: 16px 32px;
-                    border-radius: 50px;
-                    font-weight: bold;
-                    text-decoration: none;
-               ">
-                <i class="fas fa-qrcode"></i>
-                PAGAR COM PIX
-            </a>
-        </div>
-        
-        <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">
-            ✅ 7 dias grátis | ✅ Cancelamento a qualquer momento | ✅ Suporte 24h
-        </p>
-    </div>
-</section>
-
-<!-- Modal Pix (adicione antes do </body>) -->
-<div id="pix-modal" style="
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.8);
-    z-index: 9999;
-    align-items: center;
-    justify-content: center;
-">
-    <div style="
-        background: white;
-        padding: 2rem;
-        border-radius: 12px;
-        max-width: 400px;
-        text-align: center;
-    ">
-        <h3>Pagamento via PIX</h3>
-        <p>Chave PIX (CPF/CNPJ): <strong>123.456.789-00</strong></p>
-        <p style="margin: 1rem 0;">
-            Valor: <strong>R$ 29,90</strong><br>
-            Nome: <strong>PromptMaster Pro</strong>
-        </p>
-        <button onclick="document.getElementById('pix-modal').style.display='none'"
-                style="
-                    background: #4361ee;
-                    color: white;
-                    border: none;
-                    padding: 10px 20px;
-                    border-radius: 5px;
-                    cursor: pointer;
-                ">
-            Fechar
-        </button>
-    </div>
-</div>
-
-<script>
-// Adicione isto no final do seu script existente
-document.addEventListener('DOMContentLoaded', function() {
-    // Abrir modal Pix
-    document.querySelector('a[href="#pix-payment"]').addEventListener('click', function(e) {
-        e.preventDefault();
-        document.getElementById('pix-modal').style.display = 'flex';
-    });
-    
-    // Fechar modal ao clicar fora
-    document.getElementById('pix-modal').addEventListener('click', function(e) {
-        if (e.target === this) {
-            this.style.display = 'none';
-        }
-    });
-});
-</script>
         footer {
             background-color: var(--dark);
             color: white;
@@ -756,5 +636,328 @@ document.addEventListener('DOMContentLoaded', function() {
                         <button id="copy-code-btn" class="btn btn-secondary" style="flex: 1;" disabled>
                             <i class="fas fa-copy"></i> Copiar Código
                         </button>
-n>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section id="stories" class="success-stories">
+        <div class="container">
+            <div class="section-title">
+                <h2>Histórias de Sucesso</h2>
+                <p>Como nossa ferramenta já ajudou a criar soluções milionárias</p>
+            </div>
+            <div class="stories-grid">
+                <div class="story-card">
+                    <h4><i class="fas fa-user-tie"></i> João Silva - Startup de IA</h4>
+                    <p>"Com os prompts gerados pela ferramenta, conseguimos otimizar nosso algoritmo de recomendação em 40%. Em 6 meses, nossa startup foi avaliada em R$ 5 milhões."</p>
+                </div>
+                <div class="story-card">
+                    <h4><i class="fas fa-chart-bar"></i> Maria Souza - Consultoria de Dados</h4>
+                    <p>"A geração automática de código para análise de dados reduziu nosso tempo de desenvolvimento em 70%. Fechamos contratos de R$ 2,3 milhões no último ano."</p>
+                </div>
+                <div class="story-card">
+                    <h4><i class="fas fa-shopping-cart"></i> Carlos Mendes - E-commerce</h4>
+                    <p>"Os prompts para otimização de copywriting aumentaram nossa taxa de conversão em 35%. Nossa receita anual cresceu para R$ 8,7 milhões."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Planos para Todos os Objetivos</h2>
+                <p>Escolha o plano ideal para sua jornada rumo ao sucesso financeiro</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Básico</h3>
+                    <div class="price">R$ 49<span>/mês</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Até 100 gerações por mês</li>
+                        <li><i class="fas fa-check"></i> 5 linguagens de programação</li>
+                        <li><i class="fas fa-check"></i> Suporte por email</li>
+                        <li><i class="fas fa-times"></i> Templates avançados</li>
+                        <li><i class="fas fa-times"></i> Validação premium</li>
+                    </ul>
+                    <button class="btn btn-secondary">Começar Agora</button>
+                </div>
+                
+                <div class="pricing-card popular">
+                    <div class="badge">Mais Popular</div>
+                    <h3>Profissional</h3>
+                    <div class="price">R$ 149<span>/mês</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Gerações ilimitadas</li>
+                        <li><i class="fas fa-check"></i> 15+ linguagens de programação</li>
+                        <li><i class="fas fa-check"></i> Suporte prioritário</li>
+                        <li><i class="fas fa-check"></i> Todos os templates</li>
+                        <li><i class="fas fa-check"></i> Validação premium</li>
+                    </ul>
+                    <button class="btn btn-primary">Escolher Plano</button>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Empresarial</h3>
+                    <div class="price">R$ 499<span>/mês</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Tudo do Profissional</li>
+                        <li><i class="fas fa-check"></i> Múltiplos usuários</li>
+                        <li><i class="fas fa-check"></i> API completa</li>
+                        <li><i class="fas fa-check"></i> Treinamento personalizado</li>
+                        <li><i class="fas fa-check"></i> Garantia de resultados</li>
+                    </ul>
+                    <button class="btn btn-secondary">Fale Conosco</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Pagamento -->
+    <section class="cta-payment" style="
+        background: linear-gradient(135deg, #4361ee, #3a0ca3);
+        color: white;
+        padding: 4rem 0;
+        text-align: center;
+        margin-top: 2rem;
+    ">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">
+                🚀 Pronto para Revolucionar seu Trabalho?
+            </h2>
+            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto 2rem;">
+                Comece agora com 7 dias gratuitos. Cancele quando quiser.
+            </p>
+            
+            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                <!-- Botão Mercado Pago -->
+                <a href="https://mpago.la/2Qf4Fqi" 
+                   target="_blank"
+                   style="
+                        background: white;
+                        color: #4361ee;
+                        padding: 18px 36px;
+                        border-radius: 50px;
+                        font-weight: bold;
+                        font-size: 1.1rem;
+                        text-decoration: none;
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 10px;
+                        transition: all 0.3s;
+                        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                   "
+                   onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 10px 25px rgba(0,0,0,0.3)'"
+                   onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.2)'">
+                    <i class="fas fa-bolt"></i>
+                    QUERO COMEÇAR AGORA - R$ 29,90/mês
+                </a>
+                
+                <!-- Botão Pix -->
+                <button onclick="openPixModal()"
+                   style="
+                        background: transparent;
+                        color: white;
+                        border: 2px solid white;
+                        padding: 18px 36px;
+                        border-radius: 50px;
+                        font-weight: bold;
+                        font-size: 1.1rem;
+                        cursor: pointer;
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 10px;
+                        transition: all 0.3s;
+                   "
+                   onmouseover="this.style.background='rgba(255,255,255,0.1)'"
+                   onmouseout="this.style.background='transparent'">
+                    <i class="fas fa-qrcode"></i>
+                    PAGAR COM PIX
+                </button>
+            </div>
+            
+            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 2rem;">
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
+                    <div style="font-size: 0.9rem;">7 dias grátis</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
+                    <div style="font-size: 0.9rem;">Cancelamento fácil</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
+                    <div style="font-size: 0.9rem;">Suporte 24h</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
+                    <div style="font-size: 0.9rem;">Atualizações grátis</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>PromptMaster Pro</h3>
+                    <p>A ferramenta definitiva para criação de prompts e códigos precisos que transformam ideias em soluções milionárias.</p>
+                    <div style="margin-top: 20px; display: flex; gap: 15px;">
+                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#features">Recursos</a></li>
+                        <li><a href="#tool">Ferramenta</a></li>
+                        <li><a href="#stories">Histórias</a></li>
+                        <li><a href="#pricing">Planos</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> contato@promptmasterpro.com</li>
+                        <li><i class="fas fa-phone"></i> (11) 99999-9999</li>
+                        <li><i class="fas fa-map-marker-alt"></i> São Paulo, SP</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 PromptMaster Pro. Todos os direitos reservados. | Desenvolvido para criar milionários</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Pix -->
+    <div id="pixModal" style="
+        display: none;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.8);
+        z-index: 10000;
+        align-items: center;
+        justify-content: center;
+    ">
+        <div style="
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        ">
+            <h3 style="color: #333; margin-bottom: 1.5rem; font-size: 1.5rem;">
+                <i class="fas fa-qrcode" style="color: #32BCAD; margin-right: 10px;"></i>
+                Pagamento via PIX
+            </h3>
+            
+            <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                <p style="margin-bottom: 0.5rem; color: #666;">
+                    <strong>Chave PIX (CPF):</strong>
+                </p>
+                <p style="
+                    background: white;
+                    padding: 12px;
+                    border-radius: 8px;
+                    border: 2px dashed #32BCAD;
+                    font-family: monospace;
+                    font-size: 1.1rem;
+                    color: #333;
+                    margin-bottom: 1rem;
+                ">
+                    123.456.789-00
+                </p>
+                
+                <button onclick="copyPixKey()"
+                        style="
+                            background: #32BCAD;
+                            color: white;
+                            border: none;
+                            padding: 10px 20px;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            font-weight: bold;
+                            margin-bottom: 1rem;
+                        ">
+                    <i class="fas fa-copy"></i> Copiar Chave PIX
+                </button>
+                
+                <div style="margin-top: 1.5rem;">
+                    <p style="margin-bottom: 0.5rem; color: #666;">
+                        <strong>Valor:</strong>
+                    </p>
+                    <p style="font-size: 1.8rem; color: #333; font-weight: bold;">
+                        R$ 29,90
+                    </p>
+                    <p style="color: #666; font-size: 0.9rem;">
+                        Nome: <strong>PromptMaster Pro</strong>
+                    </p>
+                </div>
+            </div>
+            
+            <p style="color: #666; font-size: 0.9rem; margin-bottom: 1.5rem;">
+                ⏱️ O pagamento é confirmado em até 30 minutos<br>
+                📧 Envie o comprovante para: contato@promptmasterpro.com
+            </p>
+            
+            <button onclick="closePixModal()"
+                    style="
+                        background: #4361ee;
+                        color: white;
+                        border: none;
+                        padding: 12px 30px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-weight: bold;
+                        font-size: 1rem;
+                    ">
+                <i class="fas fa-check"></i> Entendido!
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Dados de exemplos para geração
+        const examples = {
+            "code-generation": {
+                "python": {
+                    "beginner": `# PROMPT PERFEITO PARA IA:
+# "Crie um script Python para web scraping de produtos de e-commerce com as seguintes características:
+# 1. Use requests e BeautifulSoup para acessar páginas
+# 2. Extraia: nome, preço, avaliação e disponibilidade
+# 3. Trate erros de conexão e dados ausentes
+# 4. Exporte os dados para CSV com timestamp
+# 5. Inclua comentários explicativos e docstrings"
+
+# CÓDIGO GERADO:
+import requests
+from bs4 import BeautifulSoup
+import csv
+from datetime import datetime
+import time
+
+class EcommerceScraper:
+    """
+    Classe para scraping de produtos de e-commerce.
+    """
+    
+    def __init__(self, base_url, headers=None):
+        self.base_url = base_url
+        self.headers = headers or {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10
+
 

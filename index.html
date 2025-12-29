@@ -493,6 +493,41 @@
                 justify-content: center;
             }
         }
+        
+        /* Estilos para notificações */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 99999;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .notification.success {
+            background: var(--success);
+            color: white;
+        }
+        
+        .notification.error {
+            background: var(--danger);
+            color: white;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
     </style>
 </head>
 <body>
@@ -600,7 +635,7 @@
                     
                     <div class="form-group">
                         <label for="description">Descreva sua necessidade</label>
-                        <textarea id="description" placeholder="Ex: Preciso de um código Python para web scraping de dados de produtos em um e-commerce, com tratamento de erros e exportação para CSV..."></textarea>
+                        <textarea id="description" placeholder="Ex: Preciso de um código Python para web scraping de dados de produtos em um e-commerce, com tratamento de erros e exportação para CSV...">Preciso de um código Python para web scraping de dados de produtos em um e-commerce, com tratamento de erros e exportação para CSV</textarea>
                     </div>
                     
                     <div class="form-group">
@@ -828,14 +863,14 @@
                 <div class="footer-column">
                     <h3>Contato</h3>
                     <ul class="footer-links">
-                        <li><i class="fas fa-envelope"></i> contato.promptmasterpro@gmail.com</li>
-                        <li><i class="fas fa-phone"></i> (85) 99999-9999</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Fortaleza, CE</li>
+                        <li><i class="fas fa-envelope"></i> promptmasterpro.contato@gmail.com</li>
+                        <li><i class="fab fa-whatsapp"></i> (11) 99999-9999</li>
+                        <li><i class="fas fa-clock"></i> Seg-Sex: 9h-18h</li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 PromptMaster Pro. Todos os direitos reservados. | Desenvolvido para criar milionários</p>
+                <p>&copy; 2024 PromptMaster Pro. Todos os direitos reservados. | Desenvolvido para criar milionários</p>
             </div>
         </div>
     </footer>
@@ -911,7 +946,7 @@
             
             <p style="color: #666; font-size: 0.9rem; margin-bottom: 1.5rem;">
                 ⏱️ O pagamento é confirmado em até 30 minutos<br>
-                📧 Envie o comprovante para: contato@promptmasterpro.com
+                📧 Envie o comprovante para: promptmasterpro.contato@gmail.com
             </p>
             
             <button onclick="closePixModal()"
@@ -931,34 +966,19 @@
     </div>
 
     <script>
+        // ===== CONFIGURAÇÃO DA FERRAMENTA =====
+        
+        // Elementos DOM
+        const generateBtn = document.getElementById('generate-btn');
+        const outputContainer = document.getElementById('output-container');
+        const copyPromptBtn = document.getElementById('copy-prompt-btn');
+        const copyCodeBtn = document.getElementById('copy-code-btn');
+        
         // Dados de exemplos para geração
         const examples = {
             "code-generation": {
                 "python": {
                     "beginner": `# PROMPT PERFEITO PARA IA:
-# "Crie um script Python para web scraping de produtos de e-commerce com as seguintes características:
-# 1. Use requests e BeautifulSoup para acessar páginas
-# 2. Extraia: nome, preço, avaliação e disponibilidade
-# 3. Trate erros de conexão e dados ausentes
-# 4. Exporte os dados para CSV com timestamp
-# 5. Inclua comentários explicativos e docstrings"
-
-# CÓDIGO GERADO:
-import requests
-from bs4 import BeautifulSoup
-import csv
-from datetime import datetime
-import time
-
-class EcommerceScraper:
-    """
-    Classe para scraping de produtos de e-commerce.
-    """
-    
-    def __init__(self, base_url, headers=None):
-        self.base_url = base_url
-        self.headers = headers or {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10
-
-
-
+"Crie um script Python para web scraping de produtos de e-commerce com:
+1. Use requests e BeautifulSoup
+2. Extraia

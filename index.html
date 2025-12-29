@@ -1,0 +1,640 @@
+promptmaster-site
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PromptMaster Pro - Crie Prompts e Códigos Perfeitos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #4cc9f0;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --success: #06d6a0;
+            --warning: #ffd166;
+            --danger: #ef476f;
+            --gray: #6c757d;
+            --shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo i {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .hero {
+            padding: 5rem 0;
+            text-align: center;
+            background-color: white;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: var(--gray);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .features {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card p {
+            color: var(--gray);
+        }
+        
+        .tool-section {
+            padding: 5rem 0;
+            background-color: #f5f7ff;
+        }
+        
+        .tool-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            background-color: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .tool-input, .tool-output {
+            padding: 2.5rem;
+        }
+        
+        .tool-output {
+            background-color: #f8f9ff;
+            border-left: 1px solid #eee;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+            font-family: monospace;
+        }
+        
+        .btn-generate {
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            padding: 15px;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+        
+        .btn-generate:hover {
+            background-color: var(--secondary);
+        }
+        
+        .output-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #ddd;
+            min-height: 300px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            overflow-y: auto;
+            max-height: 500px;
+        }
+        
+        .output-placeholder {
+            color: var(--gray);
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+        
+        .output-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ddd;
+        }
+        
+        .success-stories {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .story-card {
+            background-color: #f8f9ff;
+            border-radius: var(--radius);
+            padding: 2rem;
+            border-left: 4px solid var(--success);
+        }
+        
+        .story-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .story-card h4 i {
+            color: var(--success);
+        }
+        
+        .pricing {
+            padding: 5rem 0;
+            background-color: #f5f7ff;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .pricing-card {
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .pricing-card.popular {
+            border: 2px solid var(--primary);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.popular .badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary);
+            color: white;
+            padding: 5px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin: 1.5rem 0;
+        }
+        
+        .price span {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .pricing-features li i {
+            color: var(--success);
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 992px) {
+            .tool-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .pricing-card.popular {
+                transform: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 3rem 0;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-robot"></i>
+                <span>PromptMaster Pro</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#features">Recursos</a></li>
+                    <li><a href="#tool">Ferramenta</a></li>
+                    <li><a href="#stories">Histórias</a></li>
+                    <li><a href="#pricing">Planos</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Crie Prompts e Códigos Extraordinariamente Precisos</h1>
+            <p>Nossa ferramenta de IA avançada gera prompts otimizados e códigos impecáveis para qualquer tarefa. Transforme suas ideias em soluções milionárias com precisão cirúrgica.</p>
+            <div class="cta-buttons">
+                <a href="#tool" class="btn btn-primary">
+                    <i class="fas fa-bolt"></i> Experimente Agora
+                </a>
+                <a href="#pricing" class="btn btn-secondary">
+                    <i class="fas fa-crown"></i> Planos Premium
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Recursos Extraordinários</h2>
+                <p>Desenvolvemos a ferramenta mais avançada para criação de prompts e código preciso</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-magic"></i>
+                    <h3>Geração Inteligente</h3>
+                    <p>Algoritmo de IA que analisa contexto e objetivos para criar prompts otimizados que geram os melhores resultados possíveis.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-code"></i>
+                    <h3>Código Perfeito</h3>
+                    <p>Geração de código em múltiplas linguagens com boas práticas, testes incluídos e documentação automática.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Otimização Contínua</h3>
+                    <p>Sistema que aprende com cada interação para aprimorar constantemente a qualidade dos prompts e códigos gerados.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Precisão Garantida</h3>
+                    <p>Validação em múltiplas camadas garante que cada prompt e código gerado esteja livre de erros e pronto para uso.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tool Section -->
+    <section id="tool" class="tool-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Ferramenta de Criação</h2>
+                <p>Experimente agora nosso gerador de prompts e códigos precisos</p>
+            </div>
+            <div class="tool-container">
+                <div class="tool-input">
+                    <h3>Configure sua solicitação</h3>
+                    <p>Preencha os detalhes abaixo para gerar um prompt ou código perfeito</p>
+                    
+                    <div class="form-group">
+                        <label for="task-type">Tipo de Tarefa</label>
+                        <select id="task-type">
+                            <option value="code-generation">Geração de Código</option>
+                            <option value="prompt-optimization">Otimização de Prompt</option>
+                            <option value="business-idea">Ideia de Negócio</option>
+                            <option value="marketing-copy">Cópia de Marketing</option>
+                            <option value="data-analysis">Análise de Dados</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="language">Linguagem/Tecnologia</label>
+                        <select id="language">
+                            <option value="python">Python</option>
+                            <option value="javascript">JavaScript</option>
+                            <option value="html-css">HTML/CSS</option>
+                            <option value="sql">SQL</option>
+                            <option value="react">React</option>
+                            <option value="nodejs">Node.js</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="description">Descreva sua necessidade</label>
+                        <textarea id="description" placeholder="Ex: Preciso de um código Python para web scraping de dados de produtos em um e-commerce, com tratamento de erros e exportação para CSV..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="complexity">Nível de Complexidade</label>
+                        <select id="complexity">
+                            <option value="beginner">Iniciante</option>
+                            <option value="intermediate" selected>Intermediário</option>
+                            <option value="advanced">Avançado</option>
+                            <option value="expert">Especialista</option>
+                        </select>
+                    </div>
+                    
+                    <button id="generate-btn" class="btn btn-primary btn-generate">
+                        <i class="fas fa-bolt"></i> Gerar Prompt e Código Perfeitos
+                    </button>
+                </div>
+                
+                <div class="tool-output">
+                    <h3>Resultado Gerado</h3>
+                    <p>Seu prompt e código precisos aparecerão aqui</p>
+                    
+                    <div id="output-container" class="output-container">
+                        <div class="output-placeholder">
+                            <i class="fas fa-code"></i>
+                            <p>Configure os parâmetros à esquerda e clique em "Gerar" para criar seu prompt e código perfeitos.</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 20px; display: flex; gap: 10px;">
+                        <button id="copy-prompt-btn" class="btn btn-secondary" style="flex: 1;" disabled>
+                            <i class="fas fa-copy"></i> Copiar Prompt
+                        </button>
+                        <button id="copy-code-btn" class="btn btn-secondary" style="flex: 1;" disabled>
+                            <i class="fas fa-copy"></i> Copiar Código
+                        </button>

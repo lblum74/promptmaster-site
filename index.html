@@ -1,5 +1,7 @@
 promptmaster-site
 
+promptmaster-site
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -410,7 +412,123 @@ promptmaster-site
         .pricing-features li i {
             color: var(--success);
         }
+        <!-- PROCURE a seção de preços (perto do final) -->
+<!-- DEPOIS da seção de preços, ANTES do footer, adicione: -->
+
+<section class="cta-payment" style="
+    background: linear-gradient(135deg, #4361ee, #3a0ca3);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+">
+    <div class="container">
+        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">
+            🚀 Pronto para Revolucionar seu Trabalho?
+        </h2>
+        <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto 2rem;">
+            Comece agora com 7 dias gratuitos. Cancele quando quiser.
+        </p>
         
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <!-- Botão principal -->
+            <a href="https://mpago.la/https://mpago.la/2Qf4Fqi" 
+               target="_blank"
+               style="
+                    background: white;
+                    color: #4361ee;
+                    padding: 16px 32px;
+                    border-radius: 50px;
+                    font-weight: bold;
+                    font-size: 1.1rem;
+                    text-decoration: none;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 10px;
+                    transition: all 0.3s;
+               "
+               onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.2)'"
+               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                <i class="fas fa-bolt"></i>
+                QUERO COMEÇAR AGORA - R$ 29,90/mês
+            </a>
+            
+            <https://mpago.la/2Qf4Fqi>
+            <a href="#pix-payment" 
+               style="
+                    background: transparent;
+                    color: white;
+                    border: 2px solid white;
+                    padding: 16px 32px;
+                    border-radius: 50px;
+                    font-weight: bold;
+                    text-decoration: none;
+               ">
+                <i class="fas fa-qrcode"></i>
+                PAGAR COM PIX
+            </a>
+        </div>
+        
+        <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">
+            ✅ 7 dias grátis | ✅ Cancelamento a qualquer momento | ✅ Suporte 24h
+        </p>
+    </div>
+</section>
+
+<!-- Modal Pix (adicione antes do </body>) -->
+<div id="pix-modal" style="
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+">
+    <div style="
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        max-width: 400px;
+        text-align: center;
+    ">
+        <h3>Pagamento via PIX</h3>
+        <p>Chave PIX (CPF/CNPJ): <strong>123.456.789-00</strong></p>
+        <p style="margin: 1rem 0;">
+            Valor: <strong>R$ 29,90</strong><br>
+            Nome: <strong>PromptMaster Pro</strong>
+        </p>
+        <button onclick="document.getElementById('pix-modal').style.display='none'"
+                style="
+                    background: #4361ee;
+                    color: white;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                ">
+            Fechar
+        </button>
+    </div>
+</div>
+
+<script>
+// Adicione isto no final do seu script existente
+document.addEventListener('DOMContentLoaded', function() {
+    // Abrir modal Pix
+    document.querySelector('a[href="#pix-payment"]').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('pix-modal').style.display = 'flex';
+    });
+    
+    // Fechar modal ao clicar fora
+    document.getElementById('pix-modal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            this.style.display = 'none';
+        }
+    });
+});
+</script>
         footer {
             background-color: var(--dark);
             color: white;
@@ -638,3 +756,5 @@ promptmaster-site
                         <button id="copy-code-btn" class="btn btn-secondary" style="flex: 1;" disabled>
                             <i class="fas fa-copy"></i> Copiar Código
                         </button>
+n>
+
